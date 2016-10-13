@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.Window;
 
 import com.sx.timetableplus.View.Fragment.HomeContentFragment;
@@ -22,8 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
+
         initToolbar();
-        toolbar = mBinding.toolbarMain;
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mBinding.mainDrawerLy, toolbar, R.string.navigation_open, R.string.navigation_close);
         mBinding.mainDrawerLy.setDrawerListener(toggle);
         toggle.syncState();
@@ -35,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
     }
 
+
     protected void initToolbar() {
         toolbar = mBinding.toolbarMain;
-        toolbar.setTitle("课程表");
         setSupportActionBar(toolbar);
-
     }
 }

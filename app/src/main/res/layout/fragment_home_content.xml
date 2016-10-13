@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            style="@style/floating_action_button"/>
+            style="@style/floating_action_button"
+            app:srcCompat="@drawable/ic_add" />
 
     </RelativeLayout>
 </layout>
