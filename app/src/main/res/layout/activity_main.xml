@@ -29,7 +29,7 @@
                     android:background="@null"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:src="@drawable/ic_menu" />
+                    app:srcCompat="@drawable/ic_menu"/>
 
                 <RadioGroup
                     android:id="@+id/home_radio_group"
@@ -46,7 +46,8 @@
                         android:layout_marginLeft="6dp"
                         android:layout_marginRight="6dp"
                         android:background="@drawable/draw_radio_button_main"
-                        android:button="@null" />
+                        android:button="@null"
+                        android:duplicateParentState="false" />
 
                     <RadioButton
                         android:id="@+id/timeline_radio_button"
@@ -80,7 +81,7 @@
                     android:onClick="popupmenu"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:src="@drawable/ic_more" />
+                    app:srcCompat="@drawable/ic_more" />
             </RelativeLayout>
 
             <android.support.v4.view.ViewPager
