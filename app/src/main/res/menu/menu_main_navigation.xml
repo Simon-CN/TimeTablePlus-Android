@@ -3,19 +3,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_mine"
-            android:title="个人中心" />
+            android:title="个人中心"
+            android:icon="@drawable/ic_person"
+            />
         <item
             android:id="@+id/navigation_message"
-            android:title="消息中心" />
+            android:title="消息中心"
+            android:icon="@drawable/ic_message"
+            />
 
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item android:id="@+id/navigation_share"
-                android:title="分享"/>
+                android:title="分享"
+                android:icon="@drawable/ic_share" />
             <item android:id="@+id/navigation_about"
-                android:title="关于"/>
+                android:title="关于"
+                android:icon="@drawable/ic_about"/>
         </menu>
     </item>
 </menu>
