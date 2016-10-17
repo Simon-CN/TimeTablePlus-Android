@@ -15,24 +15,78 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.design.widget.AppBarLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-				android:theme="@style/AppTheme.AppBarOverlay">
+                android:layout_height="56dp"
+                android:background="@color/colorPrimary">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorPrimary" 
-					app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                <ImageButton
+                    android:id="@+id/hamburger_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:src="@drawable/ic_menu" />
 
-            </android.support.design.widget.AppBarLayout>
+                <RadioGroup
+                    android:id="@+id/home_radio_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
 
-            <FrameLayout
-                android:id="@+id/content_fram"
+                    <RadioButton
+                        android:id="@+id/home_radio_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/draw_radio_button_main"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:id="@+id/timeline_radio_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/draw_timeline_radio_button"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:id="@+id/social_radio_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/draw_social_radio_button"
+                        android:button="@null" />
+
+                </RadioGroup>
+
+                <ImageButton
+                    android:id="@+id/more_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:onClick="popupmenu"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:src="@drawable/ic_more" />
+            </RelativeLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/main_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <android.support.design.widget.NavigationView
