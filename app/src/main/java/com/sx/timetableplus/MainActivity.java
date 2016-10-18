@@ -6,6 +6,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,13 +29,16 @@ public class MainActivity extends AppCompatActivity {
     private MainPagerAdapter mAdapter;
     private List<Fragment> fragmentList = new ArrayList<>();
 
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
         initView();
         initListener();
-
     }
 
     private void initView() {
