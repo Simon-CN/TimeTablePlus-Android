@@ -1,4 +1,4 @@
-package com.sx.timetableplus.Modle;
+package com.sx.timetableplus.Model;
 
 /**
  * Created by sx on 2016/10/20.
