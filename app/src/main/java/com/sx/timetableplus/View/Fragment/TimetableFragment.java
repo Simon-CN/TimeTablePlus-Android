@@ -33,7 +33,6 @@ public class TimetableFragment extends Fragment {
     private List<Fragment> fragments;
     private TimetableViewModel mData;
     private static final int workDay = 7;
-    private static int defaultTime;
 
     @Nullable
     @Override
@@ -43,8 +42,8 @@ public class TimetableFragment extends Fragment {
         initData();
         initView();
 
-        defaultTime = (mData.getTime().getDayofWeekNum() + 5) % 7;
-        mBinding.lessonListVp.setCurrentItem(defaultTime, true);
+
+        mBinding.lessonListVp.setCurrentItem(mData.getTime().getDayofWeekNum(), true);
 
         return mBinding.getRoot();
     }
@@ -90,7 +89,7 @@ public class TimetableFragment extends Fragment {
                 int index = tab.getPosition();
                 mBinding.lessonListVp.setCurrentItem(index);
 
-
+                mData.getTime().changeDate(index);
             }
 
             @Override
