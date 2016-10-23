@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sx.timetableplus.Model.DateTime;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.View.Adapter.LessonListPagerAdapter;
@@ -16,6 +18,7 @@ import com.sx.timetableplus.ViewModel.TimetableViewModel;
 import com.sx.timetableplus.databinding.FragmentTimetableBinding;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class TimetableFragment extends Fragment {
     private List<Fragment> fragments;
     private TimetableViewModel mData;
     private static final int workDay = 7;
+    private static int defaultTime;
 
     @Nullable
     @Override
@@ -39,13 +43,17 @@ public class TimetableFragment extends Fragment {
         initData();
         initView();
 
+        defaultTime = (mData.getTime().getDayofWeekNum() + 5) % 7;
+        mBinding.lessonListVp.setCurrentItem(defaultTime, true);
+
         return mBinding.getRoot();
     }
 
     private void initData() {
         mData = new TimetableViewModel();
-        mData.setCurrentTime(new Date(System.currentTimeMillis()));
-        mData.setWeekNum(8);
+        mData.setTime(new DateTime(Calendar.getInstance(), 8));
+        mBinding.setDatetime(mData.getTime());
+
         List<ArrayList<LessonInfo>> timetable = new ArrayList<>();
         for (int i = 0; i < workDay; i++) {
             ArrayList<LessonInfo> temp = new ArrayList<>();
@@ -68,9 +76,50 @@ public class TimetableFragment extends Fragment {
             mBinding.dayofweekTab.addTab(mBinding.dayofweekTab.newTab().setText(titles.get(i)));
             fragments.add(LessonListFragment.newInstance(i + 1, mData.getTimetable().get(i)));
         }
-        lessonListPagerAdapter = new LessonListPagerAdapter(getFragmentManager(), fragments);
+        lessonListPagerAdapter = new LessonListPagerAdapter(getFragmentManager(), fragments, titles);
         mBinding.lessonListVp.setAdapter(lessonListPagerAdapter);
-        mBinding.dayofweekTab.setupWithViewPager(mBinding.lessonListVp);
+
+        initListener();
+
+    }
+
+    private void initListener() {
+        mBinding.dayofweekTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int index = tab.getPosition();
+                mBinding.lessonListVp.setCurrentItem(index);
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        mBinding.lessonListVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mBinding.dayofweekTab.getTabAt(position).select();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void initTitle() {
@@ -83,4 +132,5 @@ public class TimetableFragment extends Fragment {
         titles.add("六");
         titles.add("日");
     }
+
 }

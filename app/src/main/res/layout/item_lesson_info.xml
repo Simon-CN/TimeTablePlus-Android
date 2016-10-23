@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="lesson"
-            type="com.sx.timetableplus.Model.LessonInfo"/>
+            type="com.sx.timetableplus.Model.LessonInfo" />
     </data>
+
     <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lesson_name_txt"
-            android:text="@{lesson.name}"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/lesson_name_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{lesson.name}" />
+
+        <TextView
             android:id="@+id/lesson_classroom_txt"
-            android:text="@{lesson.classroom}"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{lesson.classroom}" />
     </LinearLayout>
 </layout>

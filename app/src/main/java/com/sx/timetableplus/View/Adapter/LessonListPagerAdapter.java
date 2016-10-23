@@ -12,11 +12,13 @@ import java.util.List;
  */
 
 public class LessonListPagerAdapter extends FragmentPagerAdapter {
-    List<Fragment> fragments;
+    private List<Fragment> fragments;
+    private List<String> titles;
 
-    public LessonListPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public LessonListPagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
         super(fm);
         this.fragments = fragments;
+        this.titles = titles;
     }
 
     @Override
@@ -29,4 +31,8 @@ public class LessonListPagerAdapter extends FragmentPagerAdapter {
         return fragments.get(position);
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles.get(position);
+    }
 }

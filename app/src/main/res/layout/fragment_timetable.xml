@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="datetime"
+            type="com.sx.timetableplus.Model.DateTime" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,9 +32,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="@dimen/mid_margin_8dp"
                     android:layout_marginTop="@dimen/mid_margin_8dp"
+                    android:text="@{datetime.week}"
                     android:textColor="@color/White"
-                    android:text="第8周"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -39,56 +46,57 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/large_margin_16dp"
-                        android:text="20"
+                        android:text="@{String.valueOf(datetime.dayofMonth)}"
                         android:textColor="@color/White"
                         android:textSize="64dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/dayofmonth_txt"
-                        android:text="2016.10"
-                        android:textColor="@color/White"
-                        android:textSize="20dp"
                         android:id="@+id/month_txt"
-                        android:layout_marginTop="32dp"/>
-
-                    <View android:layout_width="120dp"
-                        android:layout_height="1dp"
-                        android:background="@color/White"
-                        android:layout_below="@id/month_txt"
-                        android:layout_toRightOf="@id/dayofmonth_txt"/>
-
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/dayofweek_txt"
-                        android:text="星期四"
-                        android:textSize="20dp"
-                        android:textColor="@color/White"
+                        android:layout_marginTop="32dp"
                         android:layout_toRightOf="@id/dayofmonth_txt"
+                        android:text="@{datetime.date}"
+                        android:textColor="@color/White"
+                        android:textSize="20dp" />
+
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/month_txt"
+                        android:layout_toRightOf="@id/dayofmonth_txt"
+                        android:background="@color/White" />
+
+                    <TextView
+                        android:id="@+id/dayofweek_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/month_txt"
                         android:layout_marginTop="2dp"
-                        android:layout_below="@id/month_txt" />
+                        android:layout_toRightOf="@id/dayofmonth_txt"
+                        android:textColor="@color/White"
+                        android:text="@{datetime.dayofWeek}"
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
                 <android.support.design.widget.TabLayout
+                    android:id="@+id/dayofweek_tab"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:id="@+id/dayofweek_tab"
                     android:background="@color/colorPrimaryExtremeLight"
                     app:tabBackground="@drawable/background_dayofweek_tab"
-                    app:tabTextColor="@color/LightGray"
-                    app:tabSelectedTextColor="@color/White" />
+                    app:tabSelectedTextColor="@color/White"
+                    app:tabTextColor="@color/LightGray" />
 
 
             </RelativeLayout>
 
             <android.support.v4.view.ViewPager
+                android:id="@+id/lesson_list_vp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/lesson_list_vp"/>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

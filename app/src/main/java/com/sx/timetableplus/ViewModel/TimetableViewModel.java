@@ -1,5 +1,6 @@
 package com.sx.timetableplus.ViewModel;
 
+import com.sx.timetableplus.Model.DateTime;
 import com.sx.timetableplus.Model.LessonInfo;
 
 import java.util.ArrayList;
@@ -11,28 +12,19 @@ import java.util.List;
  */
 
 public class TimetableViewModel {
-    private Date currentTime;
-    private int weekNum;
+    private DateTime time;
     private List<ArrayList<LessonInfo>> timetable;
 
     public TimetableViewModel() {
         timetable = new ArrayList<>();
     }
 
-    public Date getCurrentTime() {
-        return currentTime;
+    public DateTime getTime() {
+        return time;
     }
 
-    public void setCurrentTime(Date currentTime) {
-        this.currentTime = currentTime;
-    }
-
-    public int getWeekNum() {
-        return weekNum;
-    }
-
-    public void setWeekNum(int weekNum) {
-        this.weekNum = weekNum;
+    public void setTime(DateTime time) {
+        this.time = time;
     }
 
     public List<ArrayList<LessonInfo>> getTimetable() {

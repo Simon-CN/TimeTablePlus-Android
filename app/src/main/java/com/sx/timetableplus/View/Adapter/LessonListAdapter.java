@@ -38,6 +38,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        holder.mBinding.setLesson(mData.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
