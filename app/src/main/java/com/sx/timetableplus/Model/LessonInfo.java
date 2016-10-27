@@ -6,9 +6,17 @@ import java.io.Serializable;
  * Created by sx on 2016/10/21.
  */
 
-public class LessonInfo implements Serializable{
+public class LessonInfo implements Serializable {
     private String name;
     private String classroom;
+
+    public LessonInfo() {
+    }
+
+    public LessonInfo(String name, String classroom) {
+        this.name = name;
+        this.classroom = classroom;
+    }
 
     public String getName() {
         return name;

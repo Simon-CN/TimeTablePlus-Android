@@ -6,10 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sx.timetableplus.Global.Timetable;
 import com.sx.timetableplus.Model.DateTime;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
@@ -22,6 +25,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by sx on 2016/10/17.
  */
@@ -30,8 +35,8 @@ public class TimetableFragment extends Fragment {
     FragmentTimetableBinding mBinding;
     private List<String> titles;
     private LessonListPagerAdapter lessonListPagerAdapter;
-    private List<Fragment> fragments;
-    private TimetableViewModel mData;
+    private List<LessonListFragment> fragments;
+    private DateTime mTime;
     private static final int workDay = 7;
 
     @Nullable
@@ -42,16 +47,14 @@ public class TimetableFragment extends Fragment {
         initData();
         initView();
 
-
-        mBinding.lessonListVp.setCurrentItem(mData.getTime().getDayofWeekNum(), true);
+        mBinding.lessonListVp.setCurrentItem(mTime.getDayofWeekNum(), true);
 
         return mBinding.getRoot();
     }
 
     private void initData() {
-        mData = new TimetableViewModel();
-        mData.setTime(new DateTime(Calendar.getInstance(), 8));
-        mBinding.setDatetime(mData.getTime());
+        mTime = new DateTime(Calendar.getInstance(), 9);
+        mBinding.setDatetime(mTime);
 
         List<ArrayList<LessonInfo>> timetable = new ArrayList<>();
         for (int i = 0; i < workDay; i++) {
@@ -64,7 +67,7 @@ public class TimetableFragment extends Fragment {
             }
             timetable.add(temp);
         }
-        mData.setTimetable(timetable);
+        Timetable.timetable = timetable;
     }
 
     private void initView() {
@@ -73,11 +76,10 @@ public class TimetableFragment extends Fragment {
 
         for (int i = 0; i < workDay; i++) {
             mBinding.dayofweekTab.addTab(mBinding.dayofweekTab.newTab().setText(titles.get(i)));
-            fragments.add(LessonListFragment.newInstance(i + 1, mData.getTimetable().get(i)));
+            fragments.add(LessonListFragment.newInstance(i));
         }
         lessonListPagerAdapter = new LessonListPagerAdapter(getFragmentManager(), fragments, titles);
         mBinding.lessonListVp.setAdapter(lessonListPagerAdapter);
-
         initListener();
 
     }
@@ -89,7 +91,7 @@ public class TimetableFragment extends Fragment {
                 int index = tab.getPosition();
                 mBinding.lessonListVp.setCurrentItem(index);
 
-                mData.getTime().changeDate(index);
+                mTime.changeDate(index);
             }
 
             @Override
@@ -119,6 +121,16 @@ public class TimetableFragment extends Fragment {
 
             }
         });
+
+        mBinding.addLessonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int j = 0; j < 7; j++)
+                    for (int i = 0; i < 5; i++)
+                        Timetable.timetable.get(j).add(0, new LessonInfo("add", "2-222"));
+                lessonListPagerAdapter.NotifyLessonListChanged(mBinding.dayofweekTab.getSelectedTabPosition());
+            }
+        });
     }
 
     private void initTitle() {
@@ -132,4 +144,9 @@ public class TimetableFragment extends Fragment {
         titles.add("日");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: TimetableFragment....");
+    }
 }
