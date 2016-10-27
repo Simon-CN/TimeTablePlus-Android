@@ -15,6 +15,7 @@ import com.sx.timetableplus.Global.Timetable;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.View.Adapter.LessonListAdapter;
+import com.sx.timetableplus.View.Custom.DividerItemDecoration;
 import com.sx.timetableplus.databinding.FragmentLessonListBinding;
 
 import java.util.ArrayList;
@@ -58,12 +59,13 @@ public class LessonListFragment extends Fragment {
         mAdapter = new LessonListAdapter(Timetable.timetable.get(dayofweek), mContext);
         initListener();
         mBinding.lessonListRecycler.setAdapter(mAdapter);
+        mBinding.lessonListRecycler.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
     }
 
     public void notifyLessonListChanged() {
         try {
             mAdapter.notifyDataSetChanged();
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
 

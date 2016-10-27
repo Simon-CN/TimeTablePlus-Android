@@ -63,6 +63,13 @@ public class TimetableFragment extends Fragment {
                 LessonInfo lesson = new LessonInfo();
                 lesson.setName("我是课");
                 lesson.setClassroom("3-239");
+                lesson.setDayofweek(3);
+                lesson.setId(1);
+                lesson.setTeacher("老师");
+                lesson.setStartTime(1);
+                lesson.setEndTime(2);
+                lesson.setStartWeek(2);
+                lesson.setEndWeek(19);
                 temp.add(lesson);
             }
             timetable.add(temp);
@@ -125,10 +132,7 @@ public class TimetableFragment extends Fragment {
         mBinding.addLessonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int j = 0; j < 7; j++)
-                    for (int i = 0; i < 5; i++)
-                        Timetable.timetable.get(j).add(0, new LessonInfo("add", "2-222"));
-                lessonListPagerAdapter.NotifyLessonListChanged(mBinding.dayofweekTab.getSelectedTabPosition());
+
             }
         });
     }
