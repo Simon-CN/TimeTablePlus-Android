@@ -3,4 +3,7 @@
 
     <string name="navigation_open">打开菜单</string>
     <string name="navigation_close">关闭菜单</string>
+
+    <string name="add_lesson_title">添加课程</string>
+    <string name="confirm">确定</string>
 </resources>

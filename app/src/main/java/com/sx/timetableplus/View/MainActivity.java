@@ -12,12 +12,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.RadioGroup;
+
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.View.Adapter.MainPagerAdapter;
 import com.sx.timetableplus.View.Fragment.SocialFragment;
 import com.sx.timetableplus.View.Fragment.TimelineFragment;
 import com.sx.timetableplus.View.Fragment.TimetableFragment;
 import com.sx.timetableplus.databinding.ActivityMainBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         initView();
         initListener();
     }
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new TimetableFragment());
         fragmentList.add(new TimelineFragment());
         fragmentList.add(new SocialFragment());
-
+        mBinding.mainViewPager.setOffscreenPageLimit(3);
         mAdapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList);
         mBinding.mainViewPager.setAdapter(mAdapter);
     }

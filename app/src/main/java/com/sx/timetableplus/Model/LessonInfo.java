@@ -18,14 +18,22 @@ public class LessonInfo {
     private int endTime;
     private int startWeek;
     private int endWeek;
+    private int term;
 
 
     public LessonInfo() {
     }
 
-    public LessonInfo(String name, String classroom) {
-        this.name = name;
-        this.classroom = classroom;
+    public int getTerm() {
+        return term;
+    }
+
+    public void setTerm(int term) {
+        this.term = term;
+    }
+
+    public String getSchoolTerm() {
+        return term == 1 ? "春季学期" : "秋季学期";
     }
 
     public String getLessonTime() {

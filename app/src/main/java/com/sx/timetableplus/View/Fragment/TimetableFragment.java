@@ -1,12 +1,12 @@
 package com.sx.timetableplus.View.Fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +16,12 @@ import com.sx.timetableplus.Global.Timetable;
 import com.sx.timetableplus.Model.DateTime;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.View.Activity.Timetable.AddLessonActivity;
 import com.sx.timetableplus.View.Adapter.LessonListPagerAdapter;
-import com.sx.timetableplus.ViewModel.TimetableViewModel;
 import com.sx.timetableplus.databinding.FragmentTimetableBinding;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -132,7 +131,9 @@ public class TimetableFragment extends Fragment {
         mBinding.addLessonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), AddLessonActivity.class);
+                startActivity(intent);
             }
         });
     }

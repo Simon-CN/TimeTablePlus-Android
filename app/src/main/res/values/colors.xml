@@ -12,5 +12,6 @@
     <color name="White">#FFFFFF</color>
     <color name="WhiteOp">#7FFFFFFF</color>
     <color name="Black">#000000</color>
+    <color name="colorIcon">#3B3E4A</color>
 
 </resources>
