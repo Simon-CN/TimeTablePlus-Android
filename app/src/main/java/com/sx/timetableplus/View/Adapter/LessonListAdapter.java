@@ -2,6 +2,7 @@ package com.sx.timetableplus.View.Adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
 
+
     public LessonListAdapter(List<LessonInfo> mData, Context mContext) {
         this.mData = mData;
         this.mContext = mContext;
@@ -37,16 +39,28 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.mBinding.setLesson(mData.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: lesson item...");
+                Log.d(TAG, "onClick: lesson item..." + position);
+
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.OnClick(v);
-                    mOnItemClickListener.OnLongClick(v);
+                    mOnItemClickListener.OnClick(position);
                 }
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Log.d(TAG, "onLongClick: lesson item..." + position);
+
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.OnLongClick(position);
+                }
+                return false;
             }
         });
     }
@@ -57,9 +71,9 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
     }
 
     public interface OnItemClickListener {
-        void OnClick(View v);
+        void OnClick(int position);
 
-        void OnLongClick(View v);
+        void OnLongClick(int position);
     }
 
     public void setmOnItemClickListener(OnItemClickListener mOnItemClickListener) {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class LessonListFragment extends Fragment {
     private static final String KEY_DAY_OF_WEEK = "dayofweek";
     private static int dayofweek;
 
+
     public static LessonListFragment newInstance(int dayofweek) {
         LessonListFragment fragment = new LessonListFragment();
         Bundle bundle = new Bundle();
@@ -51,7 +53,17 @@ public class LessonListFragment extends Fragment {
     }
 
     private void initListener() {
+        mAdapter.setmOnItemClickListener(new LessonListAdapter.OnItemClickListener() {
+            @Override
+            public void OnClick(int position) {
 
+            }
+
+            @Override
+            public void OnLongClick(int position) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -59,7 +71,6 @@ public class LessonListFragment extends Fragment {
         mAdapter = new LessonListAdapter(Timetable.timetable.get(dayofweek), mContext);
         initListener();
         mBinding.lessonListRecycler.setAdapter(mAdapter);
-        mBinding.lessonListRecycler.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST));
     }
 
     public void notifyLessonListChanged() {

@@ -107,6 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add"
+            android:alpha="0.6"/>
     </RelativeLayout>
 </layout>

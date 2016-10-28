@@ -61,11 +61,11 @@ public class TimetableFragment extends Fragment {
             ArrayList<LessonInfo> temp = new ArrayList<>();
             for (int j = 0; j < 5; j++) {
                 LessonInfo lesson = new LessonInfo();
-                lesson.setName("我是课");
+                lesson.setName("中国特色社会主义理论与实践研究");
                 lesson.setClassroom("3-239");
                 lesson.setDayofweek(3);
                 lesson.setId(1);
-                lesson.setTeacher("老师");
+                lesson.setTeacher("马新颖");
                 lesson.setStartTime(1);
                 lesson.setEndTime(2);
                 lesson.setStartWeek(2);
