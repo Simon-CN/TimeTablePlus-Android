@@ -11,14 +11,72 @@
             android:id="@+id/add_lesson_toolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/background_toolbar"
             android:title="@string/add_lesson_title"
             app:titleTextColor="@color/White" />
 
-        <include
-            android:id="@+id/lesson_search_view"
-            layout="@layout/include_search_view" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_datetime"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mid_margin_8dp"
+            android:paddingLeft="@dimen/large_margin_16dp"
+            android:paddingRight="@dimen/large_margin_16dp">
 
+            <com.sx.timetableplus.View.Custom.ClearEditText
+                android:id="@+id/lesson_serach_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_edit_text"
+                android:drawableLeft="@mipmap/ic_search"
+                android:drawablePadding="@dimen/mid_margin_8dp"
+                android:padding="@dimen/mid_margin_8dp"
+                android:singleLine="true"
+                android:textSize="@dimen/large_margin_16dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryExtremeLight"
+            android:padding="@dimen/mid_margin_8dp">
+
+            <TextView
+                android:id="@+id/school_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="北京邮电大学"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:id="@+id/term_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2016秋季学期"
+                android:textColor="@color/White" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_result_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/create_lesson_button"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="@dimen/min_margin_4dp"
+            android:layout_marginLeft="@dimen/mid_margin_8dp"
+            android:layout_marginRight="@dimen/mid_margin_8dp"
+            android:background="@drawable/drawable_long_button"
+            android:text="@string/create_lesson"
+            android:textColor="@color/White"
+            android:textSize="14dp" />
 
     </LinearLayout>
 </layout>

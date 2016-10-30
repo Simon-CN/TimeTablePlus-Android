@@ -6,4 +6,5 @@
 
     <string name="add_lesson_title">添加课程</string>
     <string name="confirm">确定</string>
+    <string name="create_lesson">新建课程</string>
 </resources>
