@@ -5,7 +5,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/GrayBackground">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/add_lesson_toolbar"
@@ -22,10 +23,12 @@
             android:orientation="horizontal"
             android:paddingBottom="@dimen/mid_margin_8dp"
             android:paddingLeft="@dimen/large_margin_16dp"
-            android:paddingRight="@dimen/large_margin_16dp">
+            android:paddingRight="@dimen/large_margin_16dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <com.sx.timetableplus.View.Custom.ClearEditText
-                android:id="@+id/lesson_serach_edit"
+                android:id="@+id/lesson_search_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edit_text"

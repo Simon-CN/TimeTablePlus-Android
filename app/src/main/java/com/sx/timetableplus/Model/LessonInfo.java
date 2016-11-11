@@ -64,6 +64,10 @@ public class LessonInfo {
         return dayofweek;
     }
 
+    public String getDayofWeekString() {
+        return StaticResource.WeekDay[dayofweek];
+    }
+
     public void setDayofweek(int dayofweek) {
         this.dayofweek = dayofweek;
     }
