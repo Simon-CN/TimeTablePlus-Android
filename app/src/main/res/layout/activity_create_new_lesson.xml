@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/create_lesson_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="@dimen/large_margin_16dp"
+            android:text="@string/lesson_information"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_small" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="@dimen/min_margin_4dp"
+            android:background="@color/colorAccent" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/mid_margin_8dp"
+            android:paddingRight="@dimen/mid_margin_8dp">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/name"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <com.sx.timetableplus.View.Custom.ClearEditText
+                    android:id="@+id/create_lesson_name_edt"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="@string/name_hint"
+                    android:textSize="@dimen/text_size_normal" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/GrayBackground" />
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/teacher"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <com.sx.timetableplus.View.Custom.ClearEditText
+                    android:id="@+id/create_lesson_teacher_edt"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="@string/teacher_hint"
+                    android:textSize="@dimen/text_size_normal" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/GrayBackground" />
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/classroom"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <com.sx.timetableplus.View.Custom.ClearEditText
+                    android:id="@+id/create_lesson_classroom_edt"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="@string/classroom_hint"
+                    android:textSize="@dimen/text_size_normal" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/GrayBackground" />
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/time"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:drawableRight="@drawable/ic_chevron_right"
+                    android:paddingBottom="@dimen/mid_margin_8dp"
+                    android:paddingTop="@dimen/mid_margin_8dp" />
+            </TableRow>
+        </TableLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="@dimen/min_margin_4dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/min_margin_4dp"
+            android:layout_marginRight="@dimen/min_margin_4dp"
+            android:background="@drawable/drawable_long_button"
+            android:text="@string/create_lesson"
+            android:textColor="@color/White" />
+    </LinearLayout>
+</layout>

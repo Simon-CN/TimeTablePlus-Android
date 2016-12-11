@@ -3,6 +3,7 @@ package com.sx.timetableplus.View.Activity.Timetable;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
@@ -22,9 +23,6 @@ public class AddLessonActivity extends BaseActivity {
     private List<LessonInfo> mData;
     private SearchLessonResultAdapter mAdapter;
 
-    static {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
 
     @Override
     protected void getLayoutResource() {
@@ -38,6 +36,13 @@ public class AddLessonActivity extends BaseActivity {
         mAdapter = new SearchLessonResultAdapter(this, mData);
         mBinding.searchResultRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mBinding.searchResultRecycler.setAdapter(mAdapter);
+
+        mBinding.createLessonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpToActivity(CreateNewLessonActivity.class);
+            }
+        });
     }
 
     protected void initToolbar() {

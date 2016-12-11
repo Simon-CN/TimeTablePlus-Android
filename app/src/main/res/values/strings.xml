@@ -5,6 +5,19 @@
     <string name="navigation_close">关闭菜单</string>
 
     <string name="add_lesson_title">添加课程</string>
+    <string name="add_lesson_success">已成功添加课程</string>
+    <string name="add_lesson_failed">添加课程失败</string>
     <string name="confirm">确定</string>
-    <string name="create_lesson">新建课程</string>
+    <string name="create_lesson">创建课程</string>
+    <string name="lesson_information">课程信息</string>
+    <string name="name">名称：</string>
+    <string name="name_hint">请输入课程名称</string>
+    <string name="teacher">老师：</string>
+    <string name="teacher_hint">请输入老师名字</string>
+    <string name="classroom">教室：</string>
+    <string name="classroom_hint">请输入教室位置</string>
+    <string name="time">时间：</string>
+    <string name="select_time">点击选择</string>
+
+
 </resources>

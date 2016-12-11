@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -19,10 +20,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Bundle savedInstanceState;
     protected String TAG = getClass().getSimpleName();
     protected Toolbar toolbar;
-
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
     abstract protected void getLayoutResource();
 
     abstract protected void initView();
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

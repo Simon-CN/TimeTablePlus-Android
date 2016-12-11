@@ -119,4 +119,8 @@ public class LessonInfo {
     public void setClassroom(String classroom) {
         this.classroom = classroom;
     }
+
+    public String getFullTimeString() {
+        return getWeekNum() + " " + getDayofWeekString() + " " + getLessonTime() + "节";
+    }
 }

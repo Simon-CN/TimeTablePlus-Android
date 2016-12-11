@@ -7,10 +7,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="课程圈子"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".View.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +19,11 @@
 
         <activity
             android:name=".View.Activity.Timetable.AddLessonActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".View.Activity.Timetable.CreateNewLessonActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
