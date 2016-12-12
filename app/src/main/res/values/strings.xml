@@ -18,6 +18,9 @@
     <string name="classroom_hint">请输入教室位置</string>
     <string name="time">时间：</string>
     <string name="select_time">点击选择</string>
-
-
+    <string name="class_time_selector">请选择课程时间</string>
+    <string name="choose_week">周数：</string>
+    <string name="choose_class">节数：</string>
+    <string name="choose_dayofweek">时间：</string>
+    <string name="chooes_dayofweek_hint">点击选择时间</string>
 </resources>

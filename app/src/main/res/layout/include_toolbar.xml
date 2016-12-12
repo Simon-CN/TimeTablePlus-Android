@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
         android:background="@drawable/background_toolbar"
+        android:elevation="3dp"
         app:titleTextColor="@color/White" />
 </layout>
 

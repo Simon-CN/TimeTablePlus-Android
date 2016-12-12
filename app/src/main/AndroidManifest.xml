@@ -23,7 +23,9 @@
         <activity
             android:name=".View.Activity.Timetable.CreateNewLessonActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".View.Activity.Timetable.ChooseClassTimeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

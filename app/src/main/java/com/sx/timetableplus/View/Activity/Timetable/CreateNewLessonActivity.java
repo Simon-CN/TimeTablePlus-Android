@@ -1,12 +1,9 @@
 package com.sx.timetableplus.View.Activity.Timetable;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 
 import com.sx.timetableplus.View.Activity.BaseActivity;
-import com.sx.timetableplus.View.Custom.TimePickDialog;
 import com.sx.timetableplus.databinding.ActivityCreateNewLessonBinding;
 import com.sx.timetableplus.R;
 
@@ -28,8 +25,7 @@ public class CreateNewLessonActivity extends BaseActivity {
         mBinding.selectLessonTimeTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePickDialog mDialog = new TimePickDialog(CreateNewLessonActivity.this);
-                mDialog.show();
+                jumpToActivityForResult(ChooseClassTimeActivity.class, ChooseClassTimeActivity.REQUEST_TIME_INFO);
             }
         });
     }
