@@ -15,6 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/min_margin_4dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="@dimen/large_margin_16dp"
             android:text="@string/lesson_information"
@@ -24,7 +25,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_margin="@dimen/min_margin_4dp"
             android:background="@color/colorAccent" />
 
         <TableLayout
@@ -38,95 +38,117 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="@dimen/mid_margin_8dp"
+                    android:layout_weight="2"
                     android:text="@string/name"
+                    android:textColor="@color/Black"
                     android:textSize="@dimen/text_size_normal" />
 
                 <com.sx.timetableplus.View.Custom.ClearEditText
                     android:id="@+id/create_lesson_name_edt"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_height="48dp"
+                    android:layout_weight="5"
+                    android:background="@null"
                     android:hint="@string/name_hint"
+                    android:textColorHint="@color/gray"
                     android:textSize="@dimen/text_size_normal" />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/GrayBackground" />
+                android:background="@color/gray_cc" />
 
             <TableRow>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="@dimen/mid_margin_8dp"
+                    android:layout_weight="2"
                     android:text="@string/teacher"
+                    android:textColor="@color/Black"
                     android:textSize="@dimen/text_size_normal" />
 
                 <com.sx.timetableplus.View.Custom.ClearEditText
                     android:id="@+id/create_lesson_teacher_edt"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_height="48dp"
+                    android:layout_weight="5"
+                    android:background="@null"
                     android:hint="@string/teacher_hint"
+                    android:textColorHint="@color/gray"
                     android:textSize="@dimen/text_size_normal" />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/GrayBackground" />
+                android:background="@color/gray_cc" />
 
             <TableRow>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="@dimen/mid_margin_8dp"
+                    android:layout_weight="2"
                     android:text="@string/classroom"
+                    android:textColor="@color/Black"
                     android:textSize="@dimen/text_size_normal" />
 
                 <com.sx.timetableplus.View.Custom.ClearEditText
                     android:id="@+id/create_lesson_classroom_edt"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_height="48dp"
+                    android:layout_weight="5"
+                    android:background="@null"
                     android:hint="@string/classroom_hint"
+                    android:textColorHint="@color/gray"
                     android:textSize="@dimen/text_size_normal" />
             </TableRow>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/GrayBackground" />
+                android:background="@color/gray_cc" />
 
             <TableRow>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="@dimen/mid_margin_8dp"
+                    android:layout_weight="2"
                     android:text="@string/time"
-                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/Black"
                     android:textSize="@dimen/text_size_normal" />
 
                 <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:drawableRight="@drawable/ic_chevron_right"
-                    android:paddingBottom="@dimen/mid_margin_8dp"
-                    android:paddingTop="@dimen/mid_margin_8dp" />
+                    android:id="@+id/select_lesson_time_txt"
+                    android:layout_height="48dp"
+                    android:layout_weight="5"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:drawablePadding="@dimen/min_margin_4dp"
+                    android:drawableRight="@mipmap/ic_right_arrow"
+                    android:textSize="@dimen/text_size_normal" />
             </TableRow>
         </TableLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorAccent"
-            android:layout_margin="@dimen/min_margin_4dp"/>
+            android:background="@color/colorAccent" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/min_margin_4dp"
             android:layout_marginRight="@dimen/min_margin_4dp"
+            android:layout_marginTop="@dimen/mid_margin_8dp"
             android:background="@drawable/drawable_long_button"
             android:text="@string/create_lesson"
             android:textColor="@color/White" />
