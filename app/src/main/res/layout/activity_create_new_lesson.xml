@@ -134,6 +134,8 @@
                     android:clickable="true"
                     android:drawablePadding="@dimen/min_margin_4dp"
                     android:drawableRight="@mipmap/ic_right_arrow"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/text_size_normal" />
             </TableRow>
         </TableLayout>
@@ -144,6 +146,7 @@
             android:background="@color/colorAccent" />
 
         <Button
+            android:id="@+id/create_lesson_confirm_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/min_margin_4dp"

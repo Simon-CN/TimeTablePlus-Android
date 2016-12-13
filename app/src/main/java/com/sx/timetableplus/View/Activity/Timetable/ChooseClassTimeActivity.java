@@ -1,7 +1,9 @@
 package com.sx.timetableplus.View.Activity.Timetable;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +21,16 @@ import com.sx.timetableplus.databinding.ActivityChooseClassTimeBinding;
 
 public class ChooseClassTimeActivity extends BaseActivity {
     public static final int REQUEST_TIME_INFO = 101;
+    public static final String KEY_RESULT_WEEK = "week";
+    public static final String KEY_RESULT_CLASS = "class";
+    public static final String KEY_RESULT_DAYOFWEEK = "dayofweek";
+    public static final String KEY_TIME_RESULT = "timeResult";
     ActivityChooseClassTimeBinding mBinding;
     private AlertDialog.Builder builder;
-    private boolean[] dayOfWeek = new boolean[]{false, false, false, false, false, false, false};
+
+    private int[] weekRange = {-1, -1};
+    private int[] classRange = {-1, -1};
+    private int dayofweek = -1;
 
     @Override
     protected void getLayoutResource() {
@@ -53,6 +62,7 @@ public class ChooseClassTimeActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mBinding.chooseDayofweekTxt.setText(StaticResource.WeekDay[which]);
+                dayofweek = which;
             }
         });
         builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
@@ -72,7 +82,23 @@ public class ChooseClassTimeActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+        weekRange[0] = mBinding.weekRangeBar.getSelectedMinValue().intValue();
+        weekRange[1] = mBinding.weekRangeBar.getSelectedMaxValue().intValue();
+        classRange[0] = mBinding.classRangeBar.getSelectedMinValue().intValue();
+        classRange[1] = mBinding.classRangeBar.getSelectedMaxValue().intValue();
+        if (dayofweek == -1) {
+            Toast.makeText(this, R.string.choose_dayofweek_toast, Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putInt(KEY_RESULT_DAYOFWEEK, dayofweek);
+            bundle.putIntArray(KEY_RESULT_WEEK, weekRange);
+            bundle.putIntArray(KEY_RESULT_CLASS, classRange);
+            intent.putExtra(KEY_TIME_RESULT, bundle);
+            setResult(REQUEST_TIME_INFO, intent);
+            finish();
+        }
+
         return true;
     }
 }
