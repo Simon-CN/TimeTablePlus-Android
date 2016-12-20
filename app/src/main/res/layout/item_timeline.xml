@@ -34,7 +34,7 @@
                     android:layout_height="56dp"
                     android:contentDescription="@null"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher" />
+                    app:image="@{timeline.portrait}" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"

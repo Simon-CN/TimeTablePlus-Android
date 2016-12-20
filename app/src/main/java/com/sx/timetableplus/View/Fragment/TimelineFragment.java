@@ -53,6 +53,7 @@ public class TimelineFragment extends Fragment {
             temp.setUserName("Miaopasi");
             temp.setLessonName("中国特色社会主义");
             temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
+            temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");
             mData.add(temp);
         }
     }
