@@ -23,7 +23,7 @@ import java.util.List;
  * Created by sx on 2016/10/17.
  */
 
-public class TimelineFragment extends Fragment {
+public class TimelineFragment extends BasePullLoadFragment {
     FragmentTimelineBinding mBinding;
     private MineTimelineAdapter mAdapter;
     private List<Timeline> mData;
@@ -34,28 +34,56 @@ public class TimelineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_timeline, container, false);
         mContext = getContext();
+        mRecyclerView = mBinding.mineTimelineRecycler;
         initView();
         return mBinding.getRoot();
     }
 
     private void initView() {
         mData = new ArrayList<>();
-        getData();
 
         mAdapter = new MineTimelineAdapter(getContext(), mData);
         mBinding.mineTimelineRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mBinding.mineTimelineRecycler.setAdapter(mAdapter);
+        setupPullLoad();
+
+        mBinding.addTimelineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 
-    protected void getData() {
-        for (int i = 0; i < 10; i++) {
-            Timeline temp = new Timeline();
-            temp.setUserName("Miaopasi");
-            temp.setLessonName("中国特色社会主义");
-            temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
-            temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");
-            mData.add(temp);
+    @Override
+    public void getData(boolean isRefresh) {
+        if (isRefresh) {
+            mData.clear();
+            for (int i = 0; i < 10; i++) {
+                Timeline temp = new Timeline();
+                temp.setUserName("New Miaopasi");
+                temp.setLessonName("New 中国特色社会主义");
+                temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
+                temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");
+                mData.add(temp);
+            }
+            mAdapter.notifyDataSetChanged();
+            mRecyclerView.setOnRefreshComplete();
+            mRecyclerView.onFinishLoading(true, false);
+        } else {
+            for (int i = 0; i < 10; i++) {
+                Timeline temp = new Timeline();
+                temp.setUserName("Add Miaopasi");
+                temp.setLessonName("Add 中国特色社会主义");
+                temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
+                temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");
+                mData.add(temp);
+            }
+            mAdapter.notifyDataSetChanged();
+            mRecyclerView.setOnLoadMoreComplete();
+            mRecyclerView.onFinishLoading(true, false);
         }
-    }
 
+    }
 }

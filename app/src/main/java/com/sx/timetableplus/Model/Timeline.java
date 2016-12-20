@@ -1,5 +1,6 @@
 package com.sx.timetableplus.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ public class Timeline {
     private int userId;
     private String portrait;
     private List<String> pictures;
+
+    public Timeline() {
+        pictures = new ArrayList<>();
+    }
 
     public int getId() {
         return id;

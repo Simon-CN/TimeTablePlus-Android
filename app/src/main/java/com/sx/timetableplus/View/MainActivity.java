@@ -1,5 +1,6 @@
 package com.sx.timetableplus.View;
 
+import android.annotation.TargetApi;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding.homeRadioGroup.check(mBinding.homeRadioGroup.getChildAt(position).getId());
         mBinding.mainViewPager.setCurrentItem(position);
     }
+
 
     public void popupmenu(View view) {
         pMenu.show();
