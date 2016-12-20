@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/GrayBackground">
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/timeline_info_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/background_under_toolbar"
+            android:elevation="3dp"
+            android:padding="@dimen/mid_margin_8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/mid_margin_8dp"
+                android:text="@string/my_timeline"
+                android:textColor="@color/White" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/mid_margin_8dp"
+                android:text="Username"
+                android:textColor="@color/White" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mine_timeline_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/timeline_info_ly" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_timeline_btn"
+            style="@style/floating_action_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="this is timeline page..." />
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:alpha="0.6"
+            app:srcCompat="@drawable/ic_add" />
+    </RelativeLayout>
 </layout>

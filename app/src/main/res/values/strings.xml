@@ -26,4 +26,6 @@
 
     <string name="choose_dayofweek_toast">请选择上课时间</string>
     <string name="input_full">请输入完整信息</string>
+
+    <string name="my_timeline">我的圈子</string>
 </resources>
