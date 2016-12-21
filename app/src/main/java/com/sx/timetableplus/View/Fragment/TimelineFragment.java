@@ -1,6 +1,7 @@
 package com.sx.timetableplus.View.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.tool.DataBindingBuilder;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.sx.timetableplus.Model.Timeline;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.View.Activity.Timeline.AddTimelineActivity;
 import com.sx.timetableplus.View.Adapter.MineTimelineAdapter;
 import com.sx.timetableplus.databinding.FragmentTimelineBinding;
 
@@ -50,7 +52,8 @@ public class TimelineFragment extends BasePullLoadFragment {
         mBinding.addTimelineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(mContext, AddTimelineActivity.class);
+                mContext.startActivity(intent);
             }
         });
 

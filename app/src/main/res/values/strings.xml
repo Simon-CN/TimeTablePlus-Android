@@ -30,4 +30,8 @@
     <string name="my_timeline">我的圈子</string>
     <string name="lesson_timeline">课程圈子</string>
     <string name="add_timeline">发布</string>
+    <string name="create_timeline_hint">这一刻的想法...</string>
+    <string name="select_pictures_hint">加几张照片吧...</string>
+    <string name="new_timeline_title">新状态</string>
+    <string name="mine_location">我的位置</string>
 </resources>

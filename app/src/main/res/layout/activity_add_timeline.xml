@@ -4,7 +4,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/GrayBackground"
         android:orientation="vertical">
-        
+
+        <include
+            android:id="@+id/create_timeline_toobar"
+            layout="@layout/include_toolbar" />
+
+        <EditText
+            android:id="@+id/timeline_content_edt"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="@string/create_timeline_hint"
+            android:padding="@dimen/large_margin_16dp"
+            android:textSize="@dimen/text_size_medium" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/choose_location_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableLeft="@mipmap/ic_location_default"
+                android:drawablePadding="@dimen/large_margin_16dp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/large_margin_16dp"
+                android:text="@string/mine_location"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/choose_lesson_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableLeft="@mipmap/ic_lesson_circle_default"
+                android:drawablePadding="@dimen/large_margin_16dp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/large_margin_16dp"
+                android:text="@string/lesson_timeline"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_normal" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/select_images_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="@dimen/large_margin_16dp"
+            android:text="@string/select_pictures_hint"
+            android:textColor="@color/gray"
+            android:background="?attr/selectableItemBackground" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/select_pictures_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>
