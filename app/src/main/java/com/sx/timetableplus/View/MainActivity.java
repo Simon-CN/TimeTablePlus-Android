@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
     private void selectPage(int position) {
         mBinding.homeRadioGroup.check(mBinding.homeRadioGroup.getChildAt(position).getId());
         mBinding.mainViewPager.setCurrentItem(position);
+        if (position == 0) {
+            mBinding.moreButton.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.moreButton.setVisibility(View.GONE);
+        }
     }
 
 

@@ -28,4 +28,6 @@
     <string name="input_full">请输入完整信息</string>
 
     <string name="my_timeline">我的圈子</string>
+    <string name="lesson_timeline">课程圈子</string>
+    <string name="add_timeline">发布</string>
 </resources>

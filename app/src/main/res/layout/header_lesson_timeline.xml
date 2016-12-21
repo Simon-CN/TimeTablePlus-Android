@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/lesson_name_tag"
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="@dimen/mid_margin_8dp"
+            android:layout_marginTop="@dimen/min_margin_4dp"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mid_margin_8dp"
+            android:layout_toRightOf="@id/lesson_name_tag"
+            android:text="中国特色社会主义"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_size_small_plus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/large_margin_16dp"
+            android:text="马新颖"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/text_size_small_plus" />
+    </RelativeLayout>
+</layout>

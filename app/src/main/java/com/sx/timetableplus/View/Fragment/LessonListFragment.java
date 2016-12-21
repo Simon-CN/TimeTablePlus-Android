@@ -1,6 +1,7 @@
 package com.sx.timetableplus.View.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.sx.timetableplus.Global.Timetable;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.View.Activity.Timeline.LessonTimelineActivity;
 import com.sx.timetableplus.View.Adapter.LessonListAdapter;
 import com.sx.timetableplus.View.Custom.DividerItemDecoration;
 import com.sx.timetableplus.databinding.FragmentLessonListBinding;
@@ -56,7 +58,8 @@ public class LessonListFragment extends Fragment {
         mAdapter.setmOnItemClickListener(new LessonListAdapter.OnItemClickListener() {
             @Override
             public void OnClick(int position) {
-
+                Intent intent = new Intent(mContext, LessonTimelineActivity.class);
+                mContext.startActivity(intent);
             }
 
             @Override

@@ -28,6 +28,14 @@
         <activity
             android:name=".View.Activity.Timetable.ChooseClassTimeActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".View.Activity.Timeline.AddTimelineActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".View.Activity.Timeline.LessonTimelineActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

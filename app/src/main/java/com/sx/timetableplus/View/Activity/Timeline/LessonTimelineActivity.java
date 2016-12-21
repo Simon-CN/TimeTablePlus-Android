@@ -1,59 +1,34 @@
-package com.sx.timetableplus.View.Fragment;
+package com.sx.timetableplus.View.Activity.Timeline;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.databinding.tool.DataBindingBuilder;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.sx.timetableplus.Model.Timeline;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.View.Activity.BasePullLoadActivity;
 import com.sx.timetableplus.View.Adapter.MineTimelineAdapter;
-import com.sx.timetableplus.databinding.FragmentTimelineBinding;
+import com.sx.timetableplus.databinding.ActivityLessonTimelineBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by sx on 2016/10/17.
+ * Created by sx on 2016/12/21.
  */
 
-public class TimelineFragment extends BasePullLoadFragment {
-    FragmentTimelineBinding mBinding;
-    private MineTimelineAdapter mAdapter;
+public class LessonTimelineActivity extends BasePullLoadActivity {
+    ActivityLessonTimelineBinding mBinding;
     private List<Timeline> mData;
-    private Context mContext;
+    private MineTimelineAdapter mAdapter;
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_timeline, container, false);
-        mContext = getContext();
-        mRecyclerView = mBinding.mineTimelineRecycler;
-        initView();
-        return mBinding.getRoot();
-    }
-
-    private void initView() {
-        mData = new ArrayList<>();
-
-        mAdapter = new MineTimelineAdapter(getContext(), mData, 1);
-        mBinding.mineTimelineRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        mBinding.mineTimelineRecycler.setAdapter(mAdapter);
-        setupPullLoad();
-
-        mBinding.addTimelineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
+    protected void initToolbar() {
+        toolbar = mBinding.lessonTimelineToolbar.toolbar;
+        toolbar.setTitle(R.string.lesson_timeline);
+        super.initToolbar();
     }
 
     @Override
@@ -84,6 +59,34 @@ public class TimelineFragment extends BasePullLoadFragment {
             mRecyclerView.setOnLoadMoreComplete();
             mRecyclerView.onFinishLoading(true, false);
         }
+    }
 
+    @Override
+    protected void getLayoutResource() {
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_lesson_timeline);
+        mRecyclerView = mBinding.lessonTimelineRecycler;
+    }
+
+    @Override
+    protected void initView() {
+        mData = new ArrayList<>();
+
+        initToolbar();
+        mAdapter = new MineTimelineAdapter(this, mData, 2);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.setAdapter(mAdapter);
+
+        setupPullLoad();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
     }
 }
