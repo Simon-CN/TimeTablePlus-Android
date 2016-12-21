@@ -8,9 +8,14 @@
         android:orientation="vertical">
 
         <ImageButton
+            android:id="@+id/select_images_btn"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="?attr/selectableItemBackground"
+            android:contentDescription="@null"
+            android:paddingBottom="@dimen/mid_margin_8dp"
+            android:paddingRight="@dimen/mid_margin_8dp"
+            android:paddingTop="@dimen/mid_margin_8dp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_select_images" />
     </LinearLayout>

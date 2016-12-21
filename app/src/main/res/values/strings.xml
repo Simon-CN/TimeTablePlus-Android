@@ -34,4 +34,5 @@
     <string name="select_pictures_hint">加几张照片吧...</string>
     <string name="new_timeline_title">新状态</string>
     <string name="mine_location">我的位置</string>
+    <string name="choose_location_tip">请选择当前所在位置...</string>
 </resources>

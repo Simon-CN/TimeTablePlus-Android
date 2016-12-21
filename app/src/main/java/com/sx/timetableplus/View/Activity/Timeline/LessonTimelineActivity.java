@@ -37,7 +37,7 @@ public class LessonTimelineActivity extends BasePullLoadActivity {
             mData.clear();
             for (int i = 0; i < 10; i++) {
                 Timeline temp = new Timeline();
-                temp.setUserName("New Miaopasi");
+                temp.setUserName("New Miaopasi" + i);
                 temp.setLessonName("New 中国特色社会主义");
                 temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
                 temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");

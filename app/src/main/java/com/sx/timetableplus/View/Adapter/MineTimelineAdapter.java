@@ -37,10 +37,10 @@ public class MineTimelineAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         if (viewType == 0) {
-            if (headerType == 1){
+            if (headerType == 1) {
                 view = LayoutInflater.from(mContext).inflate(R.layout.header_timeline_list, parent, false);
                 return new HeaderViewHolder(view);
-            } else{
+            } else {
                 view = LayoutInflater.from(mContext).inflate(R.layout.header_lesson_timeline, parent, false);
                 return new LessonHeaderViewHolder(view);
             }
@@ -53,10 +53,11 @@ public class MineTimelineAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         if (holder instanceof MyViewHolder) {
-            ((MyViewHolder) holder).mBinding.setTimeline(mData.get(position));
-            if (!mData.get(position).getPictures().isEmpty()) {
-                imageAdapter = new ImageAdapter(mContext, mData.get(position).getPictures());
+            ((MyViewHolder) holder).mBinding.setTimeline(mData.get(position - 1));
+            if (!mData.get(position - 1).getPictures().isEmpty()) {
+                imageAdapter = new ImageAdapter(mContext, mData.get(position - 1).getPictures());
                 ((MyViewHolder) holder).mBinding.timelinePictureRecycler.setVisibility(View.VISIBLE);
                 ((MyViewHolder) holder).mBinding.timelinePictureRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
                 ((MyViewHolder) holder).mBinding.timelinePictureRecycler.setAdapter(imageAdapter);
@@ -75,7 +76,7 @@ public class MineTimelineAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData.size() + 1;
     }
 
     @Override
