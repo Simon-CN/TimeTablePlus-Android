@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.Model.Timeline;
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.databinding.HeaderLessonTimelineBinding;
@@ -25,12 +26,20 @@ public class MineTimelineAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<Timeline> mData;
     private ImageAdapter imageAdapter;
+    private LessonInfo mLesson;
     private int headerType;
 
-    public MineTimelineAdapter(Context mContext, List<Timeline> mData, int headerType) {
+    public MineTimelineAdapter(Context mContext, List<Timeline> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        this.headerType = headerType;
+        headerType = 1;
+    }
+
+    public MineTimelineAdapter(Context mContext, List<Timeline> mData, LessonInfo mLesson) {
+        this.mContext = mContext;
+        this.mData = mData;
+        this.mLesson = mLesson;
+        headerType = 2;
     }
 
     @Override
@@ -69,7 +78,7 @@ public class MineTimelineAdapter extends RecyclerView.Adapter {
             ((HeaderViewHolder) holder).mBinding.setPortrait("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3729610624,381369976&fm=11&gp=0.jpg");
             ((HeaderViewHolder) holder).mBinding.setBackground("http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1610/31/c5/29213364_1477922832832_800x800.jpg");
         } else if (holder instanceof LessonHeaderViewHolder) {
-
+            ((LessonHeaderViewHolder) holder).mBinding.setLesson(mLesson);
         }
 
     }

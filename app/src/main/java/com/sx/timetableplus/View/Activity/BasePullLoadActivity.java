@@ -32,7 +32,10 @@ public abstract class BasePullLoadActivity extends BaseActivity {
             }
         });
 
-        loadData(true);
+    }
+
+    protected void initView() {
+        startRefresh();
     }
 
     protected void loadData(final boolean isRefresh) {
@@ -42,5 +45,20 @@ public abstract class BasePullLoadActivity extends BaseActivity {
                 getData(isRefresh);
             }
         }, 1000);
+    }
+
+    protected void startRefresh() {
+        mRecyclerView.setRefreshing(true);
+        loadData(true);
+    }
+
+    protected void endLoading() {
+        mRecyclerView.setOnLoadMoreComplete();
+        mRecyclerView.onFinishLoading(true, false);
+    }
+
+    protected void endRefresh() {
+        mRecyclerView.setOnRefreshComplete();
+        mRecyclerView.onFinishLoading(true, false);
     }
 }

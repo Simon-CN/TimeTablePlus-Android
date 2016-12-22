@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="lesson"
+            type="com.sx.timetableplus.Model.LessonInfo" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -22,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/mid_margin_8dp"
             android:layout_toRightOf="@id/lesson_name_tag"
-            android:text="中国特色社会主义"
+            android:text="@{lesson.name}"
             android:textColor="@color/colorPrimaryLight"
             android:textSize="@dimen/text_size_small_plus" />
 
@@ -32,7 +39,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/large_margin_16dp"
-            android:text="马新颖"
+            android:text="@{lesson.teacher}"
             android:textColor="@color/colorPrimaryLight"
             android:textSize="@dimen/text_size_small_plus" />
     </RelativeLayout>

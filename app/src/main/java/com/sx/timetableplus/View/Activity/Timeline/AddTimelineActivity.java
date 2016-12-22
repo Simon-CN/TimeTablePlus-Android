@@ -40,12 +40,20 @@ public class AddTimelineActivity extends BaseActivity {
     public static final int KEY_IMAGE_REQUEST = 102;
     public static final int KEY_LOCATION_REQUEST = 103;
     public static final int KEY_LESSON_REQUEST = 104;
+    public static final int REQUEST_ADD_TIMELINE = 105;
+
     public static final String KEY_RETURN_LOCATION = "location";
     public static final String KEY_RETURN_LESSON_NAME = "lessonName";
     public static final String KEY_RETURN_LESSON_ID = "lessonId";
     public static final String KEY_CREATE_TIMELINE_RESULT = "result";
 
+    public static final String KEY_PAGE_TYPE = "pageType";
+    public static final int TYPE_MY_TIMELINE = 1;
+    public static final int TYPE_LESSON_TIMELINE = 2;
+
     public boolean hasCircle;
+    private int pageType, lessonId;
+
 
     @Override
     protected void getLayoutResource() {
@@ -57,6 +65,13 @@ public class AddTimelineActivity extends BaseActivity {
         hasCircle = false;
         imageList = new ArrayList<>();
         initToolbar();
+
+        pageType = getBundle().getInt(KEY_PAGE_TYPE);
+        if (pageType == TYPE_LESSON_TIMELINE) {
+            setCircleSelected();
+            mBinding.chooseLessonTxt.setText(getBundle().getString(KEY_RETURN_LESSON_NAME));
+            lessonId = getBundle().getInt(KEY_RETURN_LESSON_ID);
+        }
 
         mAdapter = new SelectPicturesAdapter(this, imageList);
         mAdapter.setOnItemClickListener(new SelectPicturesAdapter.OnItemClickListener() {
@@ -110,18 +125,25 @@ public class AddTimelineActivity extends BaseActivity {
         } else if (requestCode == KEY_LOCATION_REQUEST) {
             if (resultCode == RESULT_OK) {
                 mBinding.chooseLocationTxt.setText(data.getStringExtra(KEY_RETURN_LOCATION));
-                Drawable dw = getResources().getDrawable(R.mipmap.ic_location_enabled);
-                dw.setBounds(0, 0, dw.getMinimumWidth(), dw.getMinimumHeight());
-                mBinding.chooseLocationTxt.setCompoundDrawables(dw, null, null, null);
+                setLocationSelected();
             }
         } else if (requestCode == KEY_LESSON_REQUEST) {
             if (resultCode == RESULT_OK) {
                 hasCircle = true;
                 mBinding.chooseLessonTxt.setText(data.getStringExtra(KEY_RETURN_LESSON_NAME));
-                DrawableUtil.LoadDrawable(getResources().getDrawable(R.mipmap.ic_lesson_circle_enabled), mBinding.chooseLessonTxt
-                        , DrawableUtil.LEFT);
+                lessonId = data.getIntExtra(KEY_RETURN_LESSON_ID, -1);
+                setCircleSelected();
             }
         }
+    }
+
+    protected void setLocationSelected() {
+        DrawableUtil.LoadDrawable(getResources().getDrawable(R.mipmap.ic_location_enabled), mBinding.chooseLocationTxt, DrawableUtil.LEFT);
+    }
+
+    protected void setCircleSelected() {
+        DrawableUtil.LoadDrawable(getResources().getDrawable(R.mipmap.ic_lesson_circle_enabled), mBinding.chooseLessonTxt
+                , DrawableUtil.LEFT);
     }
 
     @Override

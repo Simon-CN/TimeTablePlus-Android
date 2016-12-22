@@ -21,6 +21,10 @@ import com.sx.timetableplus.databinding.FragmentTimelineBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+import static com.sx.timetableplus.View.Activity.Timeline.AddTimelineActivity.KEY_PAGE_TYPE;
+import static com.sx.timetableplus.View.Activity.Timeline.AddTimelineActivity.REQUEST_ADD_TIMELINE;
+
 /**
  * Created by sx on 2016/10/17.
  */
@@ -41,10 +45,10 @@ public class TimelineFragment extends BasePullLoadFragment {
         return mBinding.getRoot();
     }
 
-    private void initView() {
+    protected void initView() {
         mData = new ArrayList<>();
 
-        mAdapter = new MineTimelineAdapter(getContext(), mData, 1);
+        mAdapter = new MineTimelineAdapter(getContext(), mData);
         mBinding.mineTimelineRecycler.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mBinding.mineTimelineRecycler.setAdapter(mAdapter);
         setupPullLoad();
@@ -52,11 +56,24 @@ public class TimelineFragment extends BasePullLoadFragment {
         mBinding.addTimelineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(AddTimelineActivity.KEY_PAGE_TYPE, AddTimelineActivity.TYPE_MY_TIMELINE);
                 Intent intent = new Intent(mContext, AddTimelineActivity.class);
-                mContext.startActivity(intent);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, REQUEST_ADD_TIMELINE);
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_ADD_TIMELINE) {
+            if (resultCode == RESULT_OK) {
+                if (data.getBooleanExtra(AddTimelineActivity.KEY_CREATE_TIMELINE_RESULT, false))
+                    startRefresh();
+            }
+        }
     }
 
     @Override
@@ -72,8 +89,7 @@ public class TimelineFragment extends BasePullLoadFragment {
                 mData.add(temp);
             }
             mAdapter.notifyDataSetChanged();
-            mRecyclerView.setOnRefreshComplete();
-            mRecyclerView.onFinishLoading(true, false);
+            endRefresh();
         } else {
             for (int i = 0; i < 10; i++) {
                 Timeline temp = new Timeline();
@@ -84,9 +100,12 @@ public class TimelineFragment extends BasePullLoadFragment {
                 mData.add(temp);
             }
             mAdapter.notifyDataSetChanged();
-            mRecyclerView.setOnLoadMoreComplete();
-            mRecyclerView.onFinishLoading(true, false);
+            endLoading();
         }
 
+    }
+
+    public void startLoading() {
+        startRefresh();
     }
 }

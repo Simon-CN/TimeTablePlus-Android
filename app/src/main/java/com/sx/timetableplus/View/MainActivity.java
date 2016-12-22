@@ -1,6 +1,7 @@
 package com.sx.timetableplus.View;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.View.Activity.Timeline.AddTimelineActivity;
 import com.sx.timetableplus.View.Adapter.MainPagerAdapter;
 import com.sx.timetableplus.View.Fragment.SocialFragment;
 import com.sx.timetableplus.View.Fragment.TimelineFragment;
@@ -119,9 +121,16 @@ public class MainActivity extends AppCompatActivity {
             mBinding.moreButton.setVisibility(View.VISIBLE);
         } else {
             mBinding.moreButton.setVisibility(View.GONE);
+            if (position == 1) {
+                refreshTimeline();
+            }
         }
     }
 
+    private void refreshTimeline() {
+        TimelineFragment temp = (TimelineFragment) mAdapter.instantiateItem(mBinding.mainViewPager, 1);
+        temp.startLoading();
+    }
 
     public void popupmenu(View view) {
         pMenu.show();
