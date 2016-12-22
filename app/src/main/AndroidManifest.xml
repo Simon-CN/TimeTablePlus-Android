@@ -65,6 +65,10 @@
             android:name=".View.Activity.Timeline.ChooseLocationActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".View.Activity.Timeline.ChooseLessonActivity"
+            android:screenOrientation="portrait" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

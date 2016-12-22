@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@null"
+            android:background="@drawable/background_remove_btn"
             app:srcCompat="@drawable/ic_remove" />
     </RelativeLayout>
 </layout>

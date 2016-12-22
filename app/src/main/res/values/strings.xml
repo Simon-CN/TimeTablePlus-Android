@@ -35,4 +35,7 @@
     <string name="new_timeline_title">新状态</string>
     <string name="mine_location">我的位置</string>
     <string name="choose_location_tip">请选择当前所在位置...</string>
+    <string name="mine_lesson_circle">我的圈子</string>
+    <string name="choose_lesson_circle_tip">请选择课程圈子...</string>
+    <string name="input_content_tip">您还没有输入分享内容...</string>
 </resources>
