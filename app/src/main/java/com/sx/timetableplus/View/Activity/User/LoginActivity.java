@@ -29,6 +29,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 jumpToActivity(MainActivity.class);
+                finish();
             }
         });
 

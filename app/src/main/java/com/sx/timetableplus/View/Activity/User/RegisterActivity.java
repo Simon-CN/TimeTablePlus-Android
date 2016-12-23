@@ -26,7 +26,7 @@ public class RegisterActivity extends BaseActivity {
         mBinding.registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                jumpToActivity(MainActivity.class);
+                finish();
             }
         });
     }
