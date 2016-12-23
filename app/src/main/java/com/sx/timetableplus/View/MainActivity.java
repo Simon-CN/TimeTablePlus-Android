@@ -135,4 +135,10 @@ public class MainActivity extends AppCompatActivity {
     public void popupmenu(View view) {
         pMenu.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.exit(0);
+    }
 }

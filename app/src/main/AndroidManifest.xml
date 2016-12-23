@@ -34,13 +34,21 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="bP7aV6ZeDqd6WnqFfKIihRENBTvhv24e" />
 
-        <activity android:name=".View.MainActivity">
+        <activity
+            android:name=".View.Activity.LaunchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".View.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".View.Activity.Timetable.AddLessonActivity"
