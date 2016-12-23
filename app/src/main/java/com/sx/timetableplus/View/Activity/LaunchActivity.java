@@ -5,6 +5,7 @@ import android.os.Handler;
 
 import com.sx.timetableplus.Model.UserInfo;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.View.Activity.User.LoginActivity;
 import com.sx.timetableplus.View.MainActivity;
 import com.sx.timetableplus.databinding.ActivityLaunchBinding;
 
@@ -29,11 +30,15 @@ public class LaunchActivity extends BaseActivity {
                     jumpToActivity(MainActivity.class);
                     finish();
                 }
-            }, 2000);
-
-
+            }, 1500);
         } else {
-
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    jumpToActivity(LoginActivity.class);
+                    finish();
+                }
+            }, 1000);
         }
 
     }

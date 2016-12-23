@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/GrayBackground"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/login_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:padding="@dimen/large_margin_16dp"
+                    android:text="@string/login_user_name"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <com.sx.timetableplus.View.Custom.ClearEditText
+                    android:id="@+id/username_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:hint="@string/login_user_name_tip"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@null"
+                    android:gravity="center_vertical"/>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/GrayBackground" />
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:padding="@dimen/large_margin_16dp"
+                    android:text="@string/login_password"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <com.sx.timetableplus.View.Custom.ClearEditText
+                    android:id="@+id/password_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:hint="@string/login_password_tip"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@null"
+                    android:gravity="center_vertical"/>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/GrayBackground" />
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/login_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/mid_margin_8dp"
+                    android:layout_marginLeft="@dimen/large_margin_16dp"
+                    android:layout_marginRight="@dimen/large_margin_16dp"
+                    android:layout_marginTop="@dimen/mid_margin_8dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_long_button"
+                    android:text="@string/login"
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/text_size_normal" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/register_tip_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="@dimen/large_margin_16dp"
+            android:text="@string/register_tip"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/text_size_small_plus" />
+    </LinearLayout>
+</layout>

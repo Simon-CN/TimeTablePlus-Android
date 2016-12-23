@@ -51,8 +51,8 @@ public class UserInfo {
     private String background;
 
     public boolean isLogin() {
-        //return !TextUtils.isEmpty(token);
-        return true;
+        return !TextUtils.isEmpty(token);
+        //return true;
     }
 
     public int getId() {

@@ -38,4 +38,16 @@
     <string name="mine_lesson_circle">我的圈子</string>
     <string name="choose_lesson_circle_tip">请选择课程圈子...</string>
     <string name="input_content_tip">您还没有输入分享内容...</string>
+
+    <string name="login_user_name">用户名：</string>
+    <string name="login_user_name_tip">请输入您的用户名...</string>
+    <string name="login_password">密码：</string>
+    <string name="login_password_tip">请输入您的密码...</string>
+    <string name="register">注册</string>
+    <string name="register_tip">还没有账号？赶快注册把~~~</string>
+    <string name="login">登录</string>
+    <string name="login_success">登录成功</string>
+
+    <string name="register_password">确认密码：</string>
+    <string name="register_password_repeat">请再次输入密码...</string>
 </resources>
