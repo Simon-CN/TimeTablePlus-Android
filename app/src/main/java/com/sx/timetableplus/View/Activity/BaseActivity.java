@@ -8,10 +8,15 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.sx.timetableplus.Http.ApiClient;
 import com.sx.timetableplus.R;
+
+import org.json.JSONObject;
 
 /**
  * Created by sx on 2016/10/28.
@@ -110,5 +115,21 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected String getTag() {
         return TAG;
+    }
+
+    protected String getJsonResult(byte[] responseBody) {
+        return new String(responseBody);
+    }
+
+    protected String getJsonContent(byte[] responseBody) {
+        String s = getJsonResult(responseBody);
+        String content = null;
+        try {
+            JSONObject json = new JSONObject(s);
+            content = json.getJSONObject("content").toString();
+        } catch (Exception e) {
+            Log.d(TAG, "json parse fail..." + e.getMessage() + "\n" + s);
+        }
+        return content;
     }
 }

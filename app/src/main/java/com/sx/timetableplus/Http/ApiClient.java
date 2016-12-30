@@ -3,15 +3,21 @@ package com.sx.timetableplus.Http;
 import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by sx on 2016/12/30.
  */
 
 public class ApiClient extends BaseApiServer {
+    public static final String PAGE_SIZE = String.valueOf(10);
+
     public void getUserInfo(String token, AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("token", token);
@@ -111,6 +117,46 @@ public class ApiClient extends BaseApiServer {
         params.add("token", token);
         params.add("id", String.valueOf(id));
         PostRequest(REMOVE_LESSON_FROM_TIMETABLE_URL, params, handler);
+    }
+
+    public void getUserTimeline(String token, int page, AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("token", token);
+        params.add("page", String.valueOf(page));
+        params.add("size", PAGE_SIZE);
+        PostRequest(GET_USER_TIMELINE_URL, params, handler);
+    }
+
+    public void getLessonTimeline(int id, int page, AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("id", String.valueOf(id));
+        params.add("page", String.valueOf(page));
+        params.add("size", PAGE_SIZE);
+        PostRequest(GET_LESSON_TIMELINE_URL, params, handler);
+    }
+
+    public void createTimeline(List<String> files, String token, int lesson_id, String location, String content
+            , AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("token", token);
+        params.add("lesson_id", String.valueOf(lesson_id));
+        params.add("location", location);
+        params.add("content", content);
+        List<File> fs = new ArrayList<>();
+        if (files != null && files.size() > 0) {
+            try {
+                for (String s : files
+                        ) {
+                    fs.add(new File(s));
+                }
+
+            } catch (Exception e) {
+                Log.d("Upload", "Timeline picture.." + e.getMessage());
+            }
+        }
+        params.put("files", fs);
+
+        PostRequest(CREATE_TIMELINE_URL, params, handler);
     }
 
 

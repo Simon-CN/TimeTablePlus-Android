@@ -7,10 +7,13 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.utils.ToastUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.View.Activity.BaseActivity;
 import com.sx.timetableplus.View.MainActivity;
 import com.sx.timetableplus.databinding.ActivityLoginBinding;
+
+import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -32,20 +35,21 @@ public class LoginActivity extends BaseActivity {
         mBinding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mClient.login(mBinding.usernameEdt.getText().toString(), mBinding.passwordEdt.getText().toString(), new AsyncHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                mClient.login(mBinding.usernameEdt.getText().toString(),
+                        mBinding.passwordEdt.getText().toString(),
+                        new AsyncHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
-                    }
+                            }
 
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                            @Override
+                            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
-                    }
-                });
+                            }
+                        });
             }
         });
-
         mBinding.registerTipTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
