@@ -23,6 +23,7 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
         if (UserInfo.getInstance(getApplicationContext()).isLogin()) {
             new Handler().postDelayed(new Runnable() {
                 @Override

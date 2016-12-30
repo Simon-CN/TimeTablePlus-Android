@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.sx.timetableplus.Http.ApiClient;
 import com.sx.timetableplus.R;
 
 /**
@@ -20,13 +21,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Bundle savedInstanceState;
     protected String TAG = getClass().getSimpleName();
     protected Toolbar toolbar;
+    protected ApiClient mClient = new ApiClient();
+
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
+
     abstract protected void getLayoutResource();
 
     abstract protected void initView();
-
 
 
     @Override
