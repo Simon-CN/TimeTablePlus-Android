@@ -1,5 +1,6 @@
 package com.sx.timetableplus.View.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import java.util.List;
 public class SearchLessonResultAdapter extends RecyclerView.Adapter<SearchLessonResultAdapter.MyViewHolder> {
     private Context mContext;
     private List<LessonInfo> mData;
+    private OnItemClickListener mListener;
 
     public SearchLessonResultAdapter(Context mContext, List<LessonInfo> mData) {
         this.mContext = mContext;
@@ -34,13 +36,14 @@ public class SearchLessonResultAdapter extends RecyclerView.Adapter<SearchLesson
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.mBinding.setLesson(mData.get(position));
 
         holder.mBinding.addLessonToTimetableBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, R.string.add_lesson_success, Toast.LENGTH_SHORT).show();
+                if (mListener != null)
+                    mListener.OnClick(position);
             }
         });
     }
@@ -48,6 +51,14 @@ public class SearchLessonResultAdapter extends RecyclerView.Adapter<SearchLesson
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public interface OnItemClickListener {
+        void OnClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -58,6 +69,5 @@ public class SearchLessonResultAdapter extends RecyclerView.Adapter<SearchLesson
             mBinding = DataBindingUtil.bind(itemView);
         }
     }
-
 
 }

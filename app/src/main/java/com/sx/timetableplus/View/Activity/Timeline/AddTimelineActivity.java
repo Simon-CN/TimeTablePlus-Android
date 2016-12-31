@@ -1,5 +1,6 @@
 package com.sx.timetableplus.View.Activity.Timeline;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
@@ -15,9 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.blankj.utilcode.utils.ToastUtils;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.sx.timetableplus.Model.UserInfo;
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.Utility.DrawableUtil;
+import com.sx.timetableplus.Utility.ResponseUtil;
 import com.sx.timetableplus.View.Activity.BaseActivity;
+import com.sx.timetableplus.View.Activity.Timetable.AddLessonActivity;
 import com.sx.timetableplus.View.Adapter.SelectPicturesAdapter;
 import com.sx.timetableplus.databinding.ActivityAddTimelineBinding;
 
@@ -25,6 +31,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
 import me.nereo.multi_image_selector.MultiImageSelector;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
@@ -51,7 +58,7 @@ public class AddTimelineActivity extends BaseActivity {
     public static final int TYPE_MY_TIMELINE = 1;
     public static final int TYPE_LESSON_TIMELINE = 2;
 
-    public boolean hasCircle;
+    public boolean hasCircle, haslocation;
     private int pageType, lessonId;
 
 
@@ -63,6 +70,7 @@ public class AddTimelineActivity extends BaseActivity {
     @Override
     protected void initView() {
         hasCircle = false;
+        haslocation = false;
         imageList = new ArrayList<>();
         initToolbar();
 
@@ -126,6 +134,7 @@ public class AddTimelineActivity extends BaseActivity {
             if (resultCode == RESULT_OK) {
                 mBinding.chooseLocationTxt.setText(data.getStringExtra(KEY_RETURN_LOCATION));
                 setLocationSelected();
+                haslocation = true;
             }
         } else if (requestCode == KEY_LESSON_REQUEST) {
             if (resultCode == RESULT_OK) {
@@ -139,6 +148,7 @@ public class AddTimelineActivity extends BaseActivity {
 
     protected void setLocationSelected() {
         DrawableUtil.LoadDrawable(getResources().getDrawable(R.mipmap.ic_location_enabled), mBinding.chooseLocationTxt, DrawableUtil.LEFT);
+
     }
 
     protected void setCircleSelected() {
@@ -166,10 +176,30 @@ public class AddTimelineActivity extends BaseActivity {
         } else if (TextUtils.isEmpty(mBinding.timelineContentEdt.getText().toString())) {
             Toast.makeText(this, R.string.input_content_tip, Toast.LENGTH_SHORT).show();
         } else {
-            Intent intent = new Intent();
-            intent.putExtra(KEY_CREATE_TIMELINE_RESULT, true);
-            setResult(RESULT_OK, intent);
-            finish();
+            final ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setMessage(getResources().getString(R.string.processing));
+            dialog.show();
+            mClient.createTimeline(imageList, UserInfo.getInstance(getApplicationContext()).getToken(), lessonId,
+                    haslocation ? mBinding.chooseLocationTxt.getText().toString() : null, mBinding.timelineContentEdt.getText().toString(),
+                    new AsyncHttpResponseHandler() {
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                            dialog.dismiss();
+                            if (ResponseUtil.hasError(responseBody)) {
+                                ToastUtils.showShortToast(AddTimelineActivity.this, ResponseUtil.getErrorMessage(responseBody));
+                            } else {
+                                Intent intent = new Intent();
+                                intent.putExtra(KEY_CREATE_TIMELINE_RESULT, true);
+                                setResult(RESULT_OK, intent);
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                            dialog.dismiss();
+                        }
+                    });
         }
         return true;
     }

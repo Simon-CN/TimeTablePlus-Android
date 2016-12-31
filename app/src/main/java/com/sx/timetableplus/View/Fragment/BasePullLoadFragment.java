@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.lhh.ptrrv.library.PullToRefreshRecyclerView;
 import com.lhh.ptrrv.library.footer.loadmore.DefaultLoadMoreView;
+import com.sx.timetableplus.Http.ApiClient;
 
 /**
  * Created by sx on 2016/12/20.
@@ -14,6 +15,7 @@ import com.lhh.ptrrv.library.footer.loadmore.DefaultLoadMoreView;
 
 public abstract class BasePullLoadFragment extends Fragment {
     PullToRefreshRecyclerView mRecyclerView;
+    ApiClient mClient = new ApiClient();
 
     public abstract void getData(boolean isRefresh);
 
@@ -63,4 +65,15 @@ public abstract class BasePullLoadFragment extends Fragment {
         mRecyclerView.onFinishLoading(true, false);
     }
 
+    protected void endLoadingRefresh(boolean isRefresh) {
+        if (isRefresh)
+            endRefresh();
+        else
+            endLoading();
+    }
+
+    protected void setNoMoreData() {
+        mRecyclerView.setOnLoadMoreComplete();
+        mRecyclerView.onFinishLoading(false, false);
+    }
 }

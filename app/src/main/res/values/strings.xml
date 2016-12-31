@@ -3,11 +3,15 @@
 
     <string name="navigation_open">打开菜单</string>
     <string name="navigation_close">关闭菜单</string>
+    <string name="network_error">网络连接出错...</string>
+    <string name="processing">正在处理...</string>
+    <string name="tip">提示</string>
 
     <string name="add_lesson_title">添加课程</string>
     <string name="add_lesson_success">已成功添加课程</string>
     <string name="add_lesson_failed">添加课程失败</string>
     <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
     <string name="create_lesson">创建课程</string>
     <string name="lesson_information">课程信息</string>
     <string name="name">名称：</string>
@@ -23,6 +27,7 @@
     <string name="choose_class">节数：</string>
     <string name="choose_dayofweek">时间：</string>
     <string name="chooes_dayofweek_hint">点击选择时间</string>
+    <string name="remove_success">删除成功</string>
 
     <string name="choose_dayofweek_toast">请选择上课时间</string>
     <string name="input_full">请输入完整信息</string>
@@ -50,4 +55,16 @@
 
     <string name="register_password">确认密码：</string>
     <string name="register_password_repeat">请再次输入密码...</string>
+    <string name="username_password_incorrect">用户名或密码错误...</string>
+    <string name="username_no_null">用户名不能为空...</string>
+    <string name="password_no_null">密码不能为空...</string>
+    <string name="password_repeat_no_same">两次输入的密码不一致...</string>
+
+    <string name="user_center">个人中心</string>
+    <string name="user_desc">个性签名</string>
+    <string name="upload_portrait">上传头像</string>
+    <string name="upload_background">上传背景图片</string>
+    <string name="change_password">修改密码</string>
+    <string name="save">保存</string>
+    <string name="logout">退出登录</string>
 </resources>

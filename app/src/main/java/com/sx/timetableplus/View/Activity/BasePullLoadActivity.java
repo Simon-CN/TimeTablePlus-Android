@@ -61,4 +61,16 @@ public abstract class BasePullLoadActivity extends BaseActivity {
         mRecyclerView.setOnRefreshComplete();
         mRecyclerView.onFinishLoading(true, false);
     }
+
+    protected void endLoadingRefresh(boolean isRefresh) {
+        if (isRefresh)
+            endRefresh();
+        else
+            endLoading();
+    }
+
+    protected void setNoMoreData() {
+        mRecyclerView.setOnLoadMoreComplete();
+        mRecyclerView.onFinishLoading(false, false);
+    }
 }

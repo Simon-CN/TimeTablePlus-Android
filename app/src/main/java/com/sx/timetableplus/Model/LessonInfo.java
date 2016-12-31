@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by sx on 2016/10/21.
  */
 
-public class LessonInfo {
+public class LessonInfo implements Serializable {
     private int id;
     private String name;
     private String classroom;
@@ -18,22 +18,8 @@ public class LessonInfo {
     private int endTime;
     private int startWeek;
     private int endWeek;
-    private int term;
-
 
     public LessonInfo() {
-    }
-
-    public int getTerm() {
-        return term;
-    }
-
-    public void setTerm(int term) {
-        this.term = term;
-    }
-
-    public String getSchoolTerm() {
-        return term == 1 ? "春季学期" : "秋季学期";
     }
 
     public String getLessonTime() {

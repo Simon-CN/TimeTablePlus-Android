@@ -4,11 +4,132 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/GrayBackground"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="this is social page..." />
+            android:background="@drawable/background_under_toolbar"
+            android:elevation="3dp"
+            android:gravity="right"
+            android:paddingBottom="@dimen/mid_margin_8dp"
+            android:paddingRight="@dimen/large_margin_16dp"
+            android:text="@string/user_center"
+            android:textColor="@color/White"
+            android:textSize="@dimen/text_size_small_plus" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/White"
+            android:padding="@dimen/large_margin_16dp"
+            android:text="个性签名"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_small_plus" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/White">
+
+            <EditText
+                android:id="@+id/user_desc_edt"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginLeft="@dimen/large_margin_16dp"
+                android:layout_marginRight="@dimen/large_margin_16dp"
+                android:layout_marginTop="@dimen/mid_margin_8dp"
+                android:background="@drawable/background_desc_edt"
+                android:gravity="top|left"
+                android:padding="@dimen/mid_margin_8dp"
+                android:textSize="@dimen/text_size_medium" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/user_desc_edt"
+                android:layout_marginBottom="@dimen/mid_margin_8dp"
+                android:layout_marginRight="@dimen/large_margin_16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/drawable_long_button"
+                android:padding="0dp"
+                android:text="@string/save"
+                android:textColor="@color/White"
+                android:textSize="@dimen/text_size_small" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin_16dp"
+            android:background="@color/White">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="@dimen/mid_margin_8dp"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="left|center_vertical"
+                android:padding="@dimen/large_margin_16dp"
+                android:text="@string/upload_portrait"
+                android:textSize="@dimen/text_size_normal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/White">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="@dimen/mid_margin_8dp"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="left|center_vertical"
+                android:padding="@dimen/large_margin_16dp"
+                android:text="@string/upload_background"
+                android:textSize="@dimen/text_size_normal" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/White">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawablePadding="@dimen/mid_margin_8dp"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:gravity="left|center_vertical"
+                android:padding="@dimen/large_margin_16dp"
+                android:text="@string/change_password"
+                android:textSize="@dimen/text_size_normal" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/mid_margin_8dp"
+            android:background="@drawable/drawable_long_button"
+            android:text="@string/logout"
+            android:textColor="@color/White"
+            android:textSize="@dimen/text_size_normal" />
     </LinearLayout>
 </layout>

@@ -5,9 +5,12 @@ import android.util.Log;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.sx.timetableplus.Model.LessonInfo;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -87,18 +90,16 @@ public class ApiClient extends BaseApiServer {
         PostRequest(ADD_LESSON_TO_TIMETABLE, params, handler);
     }
 
-    public void createLesson(String name, String classroom, String teacher, int dayofweek,
-                             int start_time, int end_time, int start_week, int end_week,
-                             String token, AsyncHttpResponseHandler handler) {
+    public void createLesson(LessonInfo lesson, String token, AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        params.add("name", name);
-        params.add("classroom", classroom);
-        params.add("teacher", teacher);
-        params.add("dayofweek", String.valueOf(dayofweek));
-        params.add("start_time", String.valueOf(start_time));
-        params.add("end_time", String.valueOf(end_time));
-        params.add("start_week", String.valueOf(start_week));
-        params.add("end_week", String.valueOf(end_week));
+        params.add("name", lesson.getName());
+        params.add("classroom", lesson.getClassroom());
+        params.add("teacher", lesson.getTeacher());
+        params.add("dayofweek", String.valueOf(lesson.getDayofweek()));
+        params.add("start_time", String.valueOf(lesson.getStartTime()));
+        params.add("end_time", String.valueOf(lesson.getEndTime()));
+        params.add("start_week", String.valueOf(lesson.getStartWeek()));
+        params.add("end_week", String.valueOf(lesson.getEndWeek()));
         params.add("token", token);
 
         PostRequest(CREATE_LESSON_URL, params, handler);
@@ -142,19 +143,17 @@ public class ApiClient extends BaseApiServer {
         params.add("lesson_id", String.valueOf(lesson_id));
         params.add("location", location);
         params.add("content", content);
-        List<File> fs = new ArrayList<>();
+        File[] fs = new File[10];
         if (files != null && files.size() > 0) {
             try {
-                for (String s : files
-                        ) {
-                    fs.add(new File(s));
+                for (int i = 0; i < files.size(); i++) {
+                    fs[i] = new File(files.get(i));
                 }
-
+                params.put("files", fs);
             } catch (Exception e) {
                 Log.d("Upload", "Timeline picture.." + e.getMessage());
             }
         }
-        params.put("files", fs);
 
         PostRequest(CREATE_TIMELINE_URL, params, handler);
     }

@@ -39,11 +39,10 @@ public class LessonListPagerAdapter extends FragmentPagerAdapter {
         return titles.get(position);
     }
 
-    public void NotifyLessonListChanged(int position) {
-        fragments.get(position).notifyLessonListChanged();
-        if (position > 0)
-            fragments.get(position - 1).notifyLessonListChanged();
-        if (position < 6)
-            fragments.get(position + 1).notifyLessonListChanged();
+    public void NotifyLessonListChanged() {
+        for (LessonListFragment frag : fragments
+                ) {
+            frag.notifyLessonListChanged();
+        }
     }
 }

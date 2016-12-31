@@ -37,7 +37,8 @@
                     android:gravity="center_vertical"
                     android:hint="@string/login_user_name_tip"
                     android:inputType="text"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:textSize="@dimen/text_size_normal"
+                    android:paddingRight="@dimen/large_margin_16dp"/>
             </TableRow>
 
             <View
@@ -64,7 +65,8 @@
                     android:gravity="center_vertical"
                     android:hint="@string/login_password_tip"
                     android:inputType="textPassword"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:textSize="@dimen/text_size_normal"
+                    android:paddingRight="@dimen/large_margin_16dp"/>
             </TableRow>
 
             <View

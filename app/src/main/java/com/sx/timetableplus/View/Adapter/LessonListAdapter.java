@@ -47,7 +47,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
                 Log.d(TAG, "onClick: lesson item..." + position);
 
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.OnClick(position);
+                    mOnItemClickListener.OnClick(position, mData.get(position));
                 }
             }
         });
@@ -58,7 +58,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
                 Log.d(TAG, "onLongClick: lesson item..." + position);
 
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.OnLongClick(position);
+                    mOnItemClickListener.OnLongClick(position, mData.get(position));
                 }
                 return false;
             }
@@ -71,9 +71,9 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.My
     }
 
     public interface OnItemClickListener {
-        void OnClick(int position);
+        void OnClick(int position, LessonInfo lesson);
 
-        void OnLongClick(int position);
+        void OnLongClick(int position, LessonInfo lesson);
     }
 
     public void setmOnItemClickListener(OnItemClickListener mOnItemClickListener) {

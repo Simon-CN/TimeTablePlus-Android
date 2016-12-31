@@ -2,6 +2,7 @@ package com.sx.timetableplus.Model;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.sx.timetableplus.Utility.SharedPreferencesUtils;
 
@@ -35,15 +36,16 @@ public class UserInfo {
 
     private static void initUserInfo(Context context) {
         userInfo = new UserInfo();
-        userInfo.id = (int) SharedPreferencesUtils.getParam(context, KEY_USER_ID, -1);
-        userInfo.desc = (String) SharedPreferencesUtils.getParam(context, KEY_USER_DESCRIPTION, "");
+        userInfo.desc = (String) SharedPreferencesUtils.getParam(context, KEY_USER_DESCRIPTION, "正在施工中~~~");
         userInfo.portrait = (String) SharedPreferencesUtils.getParam(context, KEY_USER_PORTRAIT, "http://noImage.png");
         userInfo.background = (String) SharedPreferencesUtils.getParam(context, KEY_USER_BACKGROUND, defaultBackground);
         userInfo.screenName = (String) SharedPreferencesUtils.getParam(context, KEY_USER_NAME, "");
-        userInfo.screenName = (String) SharedPreferencesUtils.getParam(context, KEY_ACCESS_TOKEN, "");
+        userInfo.token = (String) SharedPreferencesUtils.getParam(context, KEY_ACCESS_TOKEN, "");
+
+        Log.i("UserInfo", "token: " + userInfo.token + "\nscreenName: " + userInfo.screenName + "\nportrait: " + userInfo.portrait
+                + "\nbackground: " + userInfo.background + "\n");
     }
 
-    private int id;
     private String screenName;
     private String desc;
     private String token;
@@ -52,11 +54,6 @@ public class UserInfo {
 
     public boolean isLogin() {
         return !TextUtils.isEmpty(token);
-        //return true;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getScreenName() {

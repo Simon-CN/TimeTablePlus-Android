@@ -117,19 +117,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         return TAG;
     }
 
-    protected String getJsonResult(byte[] responseBody) {
-        return new String(responseBody);
-    }
 
-    protected String getJsonContent(byte[] responseBody) {
-        String s = getJsonResult(responseBody);
-        String content = null;
-        try {
-            JSONObject json = new JSONObject(s);
-            content = json.getJSONObject("content").toString();
-        } catch (Exception e) {
-            Log.d(TAG, "json parse fail..." + e.getMessage() + "\n" + s);
-        }
-        return content;
-    }
 }

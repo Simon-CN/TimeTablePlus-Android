@@ -16,11 +16,7 @@ public class Timeline {
     private int lessonId;
     private int userId;
     private String portrait;
-    private List<String> pictures;
-
-    public Timeline() {
-        pictures = new ArrayList<>();
-    }
+    private String pictures;
 
     public int getId() {
         return id;
@@ -30,11 +26,11 @@ public class Timeline {
         this.id = id;
     }
 
-    public List<String> getPictures() {
+    public String getPictures() {
         return pictures;
     }
 
-    public void setPictures(List<String> pictures) {
+    public void setPictures(String pictures) {
         this.pictures = pictures;
     }
 

@@ -1,8 +1,11 @@
 package com.sx.timetableplus.View.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sx.timetableplus.Global.Timetable;
+import com.sx.timetableplus.Http.ApiClient;
 import com.sx.timetableplus.Model.DateTime;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.R;
 import com.sx.timetableplus.View.Activity.Timetable.AddLessonActivity;
 import com.sx.timetableplus.View.Adapter.LessonListPagerAdapter;
+import com.sx.timetableplus.View.MainActivity;
 import com.sx.timetableplus.databinding.FragmentTimetableBinding;
 
 import java.util.ArrayList;
@@ -36,12 +41,21 @@ public class TimetableFragment extends Fragment {
     private LessonListPagerAdapter lessonListPagerAdapter;
     private List<LessonListFragment> fragments;
     private DateTime mTime;
+    private Context mContext;
     private static final int workDay = 7;
+
+    private Handler updateHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            lessonListPagerAdapter.NotifyLessonListChanged();
+        }
+    };
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_timetable, container, false);
+        mContext = getActivity();
         fragments = new ArrayList<>();
         initData();
         initView();
@@ -54,32 +68,11 @@ public class TimetableFragment extends Fragment {
     private void initData() {
         mTime = new DateTime(Calendar.getInstance(), 9);
         mBinding.setDatetime(mTime);
-
-        List<ArrayList<LessonInfo>> timetable = new ArrayList<>();
-        for (int i = 0; i < workDay; i++) {
-            ArrayList<LessonInfo> temp = new ArrayList<>();
-            for (int j = 0; j < 5; j++) {
-                LessonInfo lesson = new LessonInfo();
-                lesson.setName("中国特色社会主义理论与实践研究");
-                lesson.setClassroom("3-239");
-                lesson.setDayofweek(3);
-                lesson.setId(1);
-                lesson.setTeacher("马新颖");
-                lesson.setStartTime(1);
-                lesson.setEndTime(2);
-                lesson.setStartWeek(2);
-                lesson.setEndWeek(19);
-                temp.add(lesson);
-            }
-            timetable.add(temp);
-        }
-        Timetable.timetable = timetable;
     }
 
     private void initView() {
         initTitle();
         mBinding.dayofweekTab.setTabMode(TabLayout.MODE_FIXED);
-
         for (int i = 0; i < workDay; i++) {
             mBinding.dayofweekTab.addTab(mBinding.dayofweekTab.newTab().setText(titles.get(i)));
             fragments.add(LessonListFragment.newInstance(i));
@@ -87,7 +80,6 @@ public class TimetableFragment extends Fragment {
         lessonListPagerAdapter = new LessonListPagerAdapter(getFragmentManager(), fragments, titles);
         mBinding.lessonListVp.setAdapter(lessonListPagerAdapter);
         initListener();
-
     }
 
     private void initListener() {
@@ -149,9 +141,11 @@ public class TimetableFragment extends Fragment {
         titles.add("日");
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: TimetableFragment....");
+        Timetable.updateTimetable(new ApiClient(), mContext, updateHandler);
     }
 }

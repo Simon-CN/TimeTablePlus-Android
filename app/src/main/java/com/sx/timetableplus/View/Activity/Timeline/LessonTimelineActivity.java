@@ -4,18 +4,28 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.blankj.utilcode.utils.ToastUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.Model.Timeline;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.Utility.ResponseUtil;
 import com.sx.timetableplus.View.Activity.BasePullLoadActivity;
 import com.sx.timetableplus.View.Adapter.MineTimelineAdapter;
 import com.sx.timetableplus.databinding.ActivityLessonTimelineBinding;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by sx on 2016/12/21.
@@ -26,6 +36,7 @@ public class LessonTimelineActivity extends BasePullLoadActivity {
     private List<Timeline> mData;
     private MineTimelineAdapter mAdapter;
     private LessonInfo mLesson;
+    private static int page;
 
     @Override
     protected void initToolbar() {
@@ -35,31 +46,42 @@ public class LessonTimelineActivity extends BasePullLoadActivity {
     }
 
     @Override
-    public void getData(boolean isRefresh) {
-        if (isRefresh) {
-            mData.clear();
-            for (int i = 0; i < 10; i++) {
-                Timeline temp = new Timeline();
-                temp.setUserName("New Miaopasi" + i);
-                temp.setLessonName("New 中国特色社会主义");
-                temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
-                temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");
-                mData.add(temp);
+    public void getData(final boolean isRefresh) {
+        if (isRefresh)
+            page = 1;
+        mClient.getLessonTimeline(mLesson.getId(), page++, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                endLoadingRefresh(isRefresh);
+                if (ResponseUtil.hasError(responseBody)) {
+                    ToastUtils.showShortToast(LessonTimelineActivity.this, ResponseUtil.getErrorMessage(responseBody));
+                    page--;
+                } else {
+                    String content = ResponseUtil.getJsonContent(responseBody);
+                    if (!TextUtils.isEmpty(content)) {
+                        Gson gson = new Gson();
+                        Type type = new TypeToken<List<Timeline>>() {
+                        }.getType();
+                        List<Timeline> rst = new ArrayList<>();
+                        rst = gson.fromJson(content, type);
+                        if (isRefresh)
+                            mData.clear();
+                        if (rst == null || rst.isEmpty()) {
+                            setNoMoreData();
+                        } else {
+                            mData.addAll(rst);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
             }
-            mAdapter.notifyDataSetChanged();
-            endRefresh();
-        } else {
-            for (int i = 0; i < 10; i++) {
-                Timeline temp = new Timeline();
-                temp.setUserName("Add Miaopasi");
-                temp.setLessonName("Add 中国特色社会主义");
-                temp.setContent("今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊今天上课了好高兴啊");
-                temp.setPortrait("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=801952764,820373701&fm=21&gp=0.jpg");
-                mData.add(temp);
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                endLoadingRefresh(isRefresh);
+                ToastUtils.showShortToast(LessonTimelineActivity.this, R.string.network_error);
             }
-            mAdapter.notifyDataSetChanged();
-            endLoading();
-        }
+        });
     }
 
     @Override
@@ -70,11 +92,16 @@ public class LessonTimelineActivity extends BasePullLoadActivity {
 
     @Override
     protected void initView() {
+        page = 1;
         mData = new ArrayList<>();
         mLesson = new LessonInfo();
-        mLesson.setName("中国特色社会主义");
-        mLesson.setTeacher("马新颖");
-        mLesson.setId(233);
+        try {
+            mLesson = (LessonInfo) getBundle().getSerializable("lesson");
+        } catch (Exception e) {
+            Log.d(TAG, "initView: " + e.getMessage());
+            finish();
+        }
+
         initToolbar();
         mAdapter = new MineTimelineAdapter(this, mData, mLesson);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
