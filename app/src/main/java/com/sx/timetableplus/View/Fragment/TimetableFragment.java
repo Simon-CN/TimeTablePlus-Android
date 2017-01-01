@@ -66,7 +66,7 @@ public class TimetableFragment extends Fragment {
     }
 
     private void initData() {
-        mTime = new DateTime(Calendar.getInstance(), 9);
+        mTime = new DateTime(Calendar.getInstance(), 19);
         mBinding.setDatetime(mTime);
     }
 

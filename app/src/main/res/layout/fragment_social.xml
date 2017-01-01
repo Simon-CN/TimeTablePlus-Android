@@ -5,7 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/GrayBackground"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <TextView
             android:layout_width="match_parent"
@@ -27,7 +29,8 @@
             android:padding="@dimen/large_margin_16dp"
             android:text="个性签名"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_size_small_plus" />
+            android:textSize="@dimen/text_size_small_plus"
+            android:id="@+id/desc_title_txt"/>
 
         <View
             android:layout_width="match_parent"
@@ -37,7 +40,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/White">
+            android:background="@color/White"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <EditText
                 android:id="@+id/user_desc_edt"
@@ -48,10 +53,13 @@
                 android:layout_marginTop="@dimen/mid_margin_8dp"
                 android:background="@drawable/background_desc_edt"
                 android:gravity="top|left"
+                android:hint="@string/user_desc_hint"
                 android:padding="@dimen/mid_margin_8dp"
-                android:textSize="@dimen/text_size_medium" />
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/text_size_normal" />
 
             <Button
+                android:id="@+id/save_user_desc_btn"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
@@ -73,6 +81,7 @@
             android:background="@color/White">
 
             <TextView
+                android:id="@+id/upload_portrait_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -92,6 +101,7 @@
             android:background="@color/White">
 
             <TextView
+                android:id="@+id/upload_background_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -111,6 +121,7 @@
             android:background="@color/White">
 
             <TextView
+                android:id="@+id/edit_password_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
@@ -124,6 +135,7 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/logout_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/mid_margin_8dp"

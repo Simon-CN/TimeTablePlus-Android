@@ -46,20 +46,14 @@ public class LaunchActivity extends BaseActivity {
     @Override
     protected void initView() {
         if (UserInfo.getInstance(getApplicationContext()).isLogin()) {
+            UserInfo.updateUserInfo(getApplicationContext());
             getTimetable();
         } else {
-            jumpToActivityForResult(LoginActivity.class, 101);
+            jumpToActivity(LoginActivity.class);
+            finish();
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 101) {
-            if (resultCode == RESULT_OK) {
-                getTimetable();
-            }
-        }
-    }
 
     private void getTimetable() {
 

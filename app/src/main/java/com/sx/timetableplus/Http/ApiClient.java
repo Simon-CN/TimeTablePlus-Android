@@ -41,10 +41,11 @@ public class ApiClient extends BaseApiServer {
         PostRequest(REGISTER_URL, params, handler);
     }
 
-    public void editPassword(String token, String password, AsyncHttpResponseHandler handler) {
+    public void editPassword(String token, String password, String oldpassword, AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("token", token);
         params.add("password", password);
+        params.add("oldpassword", oldpassword);
         PostRequest(EDIT_PASSWORD_URL, params, handler);
     }
 
@@ -77,6 +78,13 @@ public class ApiClient extends BaseApiServer {
         }
         params.add("token", token);
         PostRequest(UPLOAD_BACKGROUND_URL, params, handler);
+    }
+
+    public void identifyUserInfo(String token, String password, AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("token", token);
+        params.add("password", password);
+        PostRequest(IDENTIFY_USER_INFO_URL, params, handler);
     }
 
     public void getTimetable(String token, AsyncHttpResponseHandler handler) {

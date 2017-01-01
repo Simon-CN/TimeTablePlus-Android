@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="16dp"
+            android:text="UserName"
             android:textSize="20dp" />
 
         <TextView
@@ -33,6 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
+            android:maxLines="1"
+            android:text="@string/user_desc_hint"
             android:textSize="16dp" />
     </LinearLayout>
 </layout>

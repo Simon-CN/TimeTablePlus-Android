@@ -37,6 +37,7 @@ public class BaseApiServer extends BaseService {
     public static final String EDIT_DESCRIPTION_URL = UrlBuilder("editDescription", 1);
     public static final String UPLOAD_PORTRAIT_URL = UrlBuilder("portrait", 1);
     public static final String UPLOAD_BACKGROUND_URL = UrlBuilder("background", 1);
+    public static final String IDENTIFY_USER_INFO_URL = UrlBuilder("identify", 1);
 
     public static final String GET_TIMETABLE_URL = UrlBuilder("timetable/", 2);
     public static final String ADD_LESSON_TO_TIMETABLE = UrlBuilder("timetable/add", 2);

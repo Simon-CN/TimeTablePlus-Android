@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/GrayBackground"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/upload_picture_toolbar"
+            layout="@layout/include_toolbar" />
+
+        <ImageView
+            android:id="@+id/picture_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:padding="@dimen/mid_margin_8dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/select_image_ly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_palette_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/large_margin_16dp"
+                android:text="点我选择图片~~~"
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="@dimen/text_size_normal" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

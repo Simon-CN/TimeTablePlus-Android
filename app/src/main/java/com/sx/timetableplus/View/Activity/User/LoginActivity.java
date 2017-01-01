@@ -15,6 +15,7 @@ import com.sx.timetableplus.R;
 import com.sx.timetableplus.Utility.ResponseUtil;
 import com.sx.timetableplus.Utility.SharedPreferencesUtils;
 import com.sx.timetableplus.View.Activity.BaseActivity;
+import com.sx.timetableplus.View.Activity.LaunchActivity;
 import com.sx.timetableplus.View.MainActivity;
 import com.sx.timetableplus.databinding.ActivityLoginBinding;
 
@@ -58,9 +59,9 @@ public class LoginActivity extends BaseActivity {
                                 if (!ResponseUtil.hasError(responseBody)) {
                                     String token = ResponseUtil.getJsonContent(responseBody);
                                     SharedPreferencesUtils.setParam(getApplicationContext(), UserInfo.KEY_ACCESS_TOKEN, token);
-                                    SharedPreferencesUtils.setParam(getApplicationContext(), UserInfo.KEY_USER_NAME, mBinding.usernameEdt.getText().toString());
+                                    UserInfo.updateUserInfo(getApplicationContext());
                                     dialog.dismiss();
-                                    setResult(RESULT_OK);
+                                    jumpToActivity(LaunchActivity.class);
                                     finish();
                                 } else {
                                     ToastUtils.showShortToast(LoginActivity.this, R.string.username_password_incorrect);

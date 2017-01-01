@@ -13,6 +13,7 @@ import com.sx.timetableplus.Model.LessonInfo;
 import com.sx.timetableplus.Model.Timeline;
 import com.sx.timetableplus.Model.UserInfo;
 import com.sx.timetableplus.R;
+import com.sx.timetableplus.Utility.GlideUtil;
 import com.sx.timetableplus.databinding.HeaderLessonTimelineBinding;
 import com.sx.timetableplus.databinding.HeaderTimelineListBinding;
 import com.sx.timetableplus.databinding.ItemTimelineBinding;
